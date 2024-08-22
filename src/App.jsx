@@ -33,6 +33,7 @@ const router = createBrowserRouter([
 				<AppLayout />
 			</ProtectedRoute>
 		),
+
 		children: [
 			{ path: "/", element: <Navigate replace to="/dashboard" /> },
 
