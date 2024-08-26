@@ -91,4 +91,6 @@ export async function updateBooking(id, body) {
 
 		throw new Error(`${res.status} - ${data.message} `);
 	}
+
+	return id;
 }

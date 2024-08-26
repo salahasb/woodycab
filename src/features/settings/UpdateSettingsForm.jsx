@@ -19,7 +19,7 @@ function UpdateSettingsForm({ settings }) {
 	// event handlers
 	function handleOnBlur(e, field) {
 		const { value } = e.target;
-
+		console.log(value);
 		updateSettings({ [field]: value });
 	}
 

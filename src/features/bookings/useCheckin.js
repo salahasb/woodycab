@@ -3,8 +3,7 @@ import { updateBooking } from "../../services/apiBookings";
 import { useNavigate } from "react-router-dom";
 import { useToaster } from "../../contexts/ToasterContext";
 
-function useCheckin(id) {
-	const queryClient = useQueryClient();
+function useCheckin() {
 	const navigate = useNavigate();
 	const { addToaster } = useToaster();
 
@@ -12,7 +11,8 @@ function useCheckin(id) {
 		mutationFn: ({ id, body }) =>
 			updateBooking(id, { status: "checked-in", isPaid: true, ...body }),
 
-		onSuccess: () => {
+		onSuccess: (id) => {
+			console.log(id);
 			addToaster("success", `the Booking ${id} has successfully checked-in`);
 
 			// queryClient.invalidateQueries(["booking", id]);

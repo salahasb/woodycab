@@ -27,7 +27,7 @@ function CheckinBooking() {
 
 	// react query hooks
 	const { booking, isLoading, error } = useBooking();
-	const { checkin, isUpdating } = useCheckin(booking?.id);
+	const { checkin, isUpdating } = useCheckin();
 	const { settings, isLoading: isLoadingSettings } = useSettings();
 
 	// react router hooks

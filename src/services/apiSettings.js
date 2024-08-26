@@ -23,10 +23,11 @@ export async function getSettings() {
 
 export async function patchSettings(body) {
 	const token = localStorage.getItem("authToken");
+	console.log(body);
 
 	if (!token) throw new Error(`Token Not Found!`);
 
-	const res = await fetch(`${supabaseUrl}/rest/v1/settings?id=eq.1`, {
+	const res = await fetch(`${supabaseUrl}/rest/v1/settings?id=eq.6`, {
 		method: "PATCH",
 		body: JSON.stringify(body),
 		headers: {
@@ -36,7 +37,6 @@ export async function patchSettings(body) {
 		},
 	});
 
-	console.log(res);
 	if (!res.ok) {
 		const data = await res.json();
 		throw new Error(`${data.message}`);
