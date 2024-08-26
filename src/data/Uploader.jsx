@@ -7,6 +7,7 @@ import { subtractDates } from "../utils/helpers";
 import { bookings } from "./data-bookings";
 import { cabins } from "./data-cabins";
 import { guests } from "./data-guests";
+import { settings } from "./data-settings,js";
 
 // const originalSettings = {
 //   minBookingLength: 3,
@@ -14,6 +15,15 @@ import { guests } from "./data-guests";
 //   maxGuestsPerBooking: 10,
 //   breakfastPrice: 15,
 // };
+
+async function signInUser() {
+	const { error } = await supabase.auth.signInWithPassword({
+		email: "salahakon1998@gmail.com",
+		password: "123456789",
+	});
+
+	if (error) console.error("Error signing in:", error);
+}
 
 async function deleteGuests() {
 	const { error } = await supabase.from("guests").delete().gt("id", 0);
@@ -30,6 +40,11 @@ async function deleteBookings() {
 	if (error) console.log(error.message);
 }
 
+async function deleteSettings() {
+	const { error } = await supabase.from("settings").delete().gt("id", 0);
+	if (error) console.log(error.message);
+}
+
 async function createGuests() {
 	const { error } = await supabase.from("guests").insert(guests);
 	if (error) console.log(error.message);
@@ -37,6 +52,11 @@ async function createGuests() {
 
 async function createCabins() {
 	const { error } = await supabase.from("cabins").insert(cabins);
+	if (error) console.log(error.message);
+}
+
+async function createSettings() {
+	const { error } = await supabase.from("settings").insert(settings);
 	if (error) console.log(error.message);
 }
 
@@ -105,12 +125,18 @@ function Uploader() {
 
 	async function uploadAll() {
 		setIsLoading(true);
-		// Bookings need to be deleted FIRST
+
+		// sign-in the authenticated user who will perform these actions
+		signInUser();
+
+		// data need to be deleted FIRST
+		// await deleteSettings();
 		await deleteBookings();
 		await deleteGuests();
 		await deleteCabins();
 
-		// Bookings need to be created LAST
+		// data need to be created LAST
+		// await createSettings();
 		await createGuests();
 		await createCabins();
 		await createBookings();

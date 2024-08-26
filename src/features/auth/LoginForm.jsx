@@ -9,7 +9,7 @@ function LoginForm() {
 
 	const { register, handleSubmit, reset } = useForm({
 		defaultValues: {
-			email: "salahakon1998@outlook.com",
+			email: "salahakon1998@gmail.com",
 			password: "123456789",
 		},
 	});

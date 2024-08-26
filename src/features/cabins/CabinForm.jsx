@@ -117,7 +117,7 @@ function CabinForm({ cabin = {}, onCloseModal }) {
 					disabled={isWorking}
 					{...register("discount", {
 						validate: (value, fields) =>
-							value <= getValues().regularPrice ||
+							+value <= +getValues().regularPrice ||
 							"Discount should be less than regular price",
 					})}
 				/>

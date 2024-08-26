@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function ProtectedRoute({ children }) {
 	// React Query
-	const { isLoading, error, remove } = useUser("Pro");
+	const { isLoading, error, remove } = useUser();
 
 	// React Router
 	const navigate = useNavigate();

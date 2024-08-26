@@ -36,9 +36,9 @@ export async function patchSettings(body) {
 		},
 	});
 
+	console.log(res);
 	if (!res.ok) {
 		const data = await res.json();
-
 		throw new Error(`${data.message}`);
 	}
 	// console.log(data);
