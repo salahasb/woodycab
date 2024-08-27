@@ -33,8 +33,14 @@ const Row = styled.div`
 		border-bottom: var(--border-main);
 	}
 
-	&:has(label) * {
-		flex: 1 0 0;
+	& > input,
+	& > textarea {
+		width: 22.8rem;
+	}
+
+	& > label {
+		width: 24.2rem;
+		flex-shrink: 0;
 	}
 
 	& > p {
@@ -54,6 +60,9 @@ const RowVertical = styled.div`
 
 const Label = styled.label`
 	font-size: 1.5rem;
+	${({ $shrink }) => {
+		$shrink ? "flex-shrink:1;" : "";
+	}}
 `;
 
 const Input = styled.input`

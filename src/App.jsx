@@ -53,6 +53,7 @@ const router = createBrowserRouter([
 		ErrorBoundary: ErrorPage,
 	},
 	{ path: "login", element: <Login />, ErrorBoundary: ErrorPage },
+	{ path: "*", element: <h1> Not Found</h1>, ErrorBoundary: ErrorPage },
 ]);
 
 const queryClient = new QueryClient({

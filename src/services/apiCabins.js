@@ -32,14 +32,26 @@ export async function deleteCabin(id) {
 	}
 }
 
-export async function postCabin(body) {
+export async function postCabin(data) {
 	const token = localStorage.getItem("authToken");
 
 	if (!token) throw new Error(`Token Not Found!`);
 
+	let imageUrl, imageName;
+
+	if (typeof data.image === "string") imageUrl = data.image;
+	else {
+		imageName = `${Date.now()}-${data.image.name
+			.replaceAll("/", "")
+			.replaceAll(" ", "-")}`;
+
+		imageUrl = `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
+	}
+
+	//  uploading cabin first
 	const res = await fetch(`${supabaseUrl}/rest/v1/cabins`, {
 		method: "POST",
-		body: JSON.stringify(body),
+		body: JSON.stringify({ ...data, image: imageUrl }),
 		headers: {
 			"Content-type": "application/json",
 			apikey: supabaseKey,
@@ -47,10 +59,21 @@ export async function postCabin(body) {
 		},
 	});
 
-	if (!res.ok) {
-		const data = await res.json();
+	if (!res.ok) throw new Error(`Cabin has not uploaded - ${res.statusText}`);
 
-		throw new Error(`${res.status} - ${data.message} `);
+	if (typeof data.image === "string") return;
+
+	// storing the cabin image in supabase storage later
+	const image = data.image;
+
+	const { data: newCabin, error } = await supabase.storage
+		.from("cabin-images")
+		.upload(`${imageName}`, image);
+
+	// Delete cabin if cabin image didn't successfully upload
+	if (error) {
+		await deleteCabin(newCabin.id);
+		throw new Error("Cabin image has not uploaded");
 	}
 
 	// return data;
@@ -59,23 +82,46 @@ export async function postCabin(body) {
 export async function updateCabin({ id, body }) {
 	const token = localStorage.getItem("authToken");
 
+	// return;
 	if (!token) throw new Error(`Token Not Found!`);
 
+	let image, imageName;
+
+	if (typeof body.image === "string") image = body.image;
+	else {
+		imageName = `${Date.now()}-${body.image.name
+			.replaceAll("/", "")
+			.replaceAll(" ", "-")}`;
+
+		image = `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
+	}
+
+	//  uploading cabin first
 	const res = await fetch(`${supabaseUrl}/rest/v1/cabins?id=eq.${id}`, {
 		method: "PATCH",
-		body: JSON.stringify(body),
+		body: JSON.stringify({ ...body, image }),
 		headers: {
 			"Content-type": "application/json",
 			apikey: supabaseKey,
 			Authorization: `Bearer ${token}`,
 		},
 	});
-	// console.log(res);
 
-	if (!res.ok) {
-		const data = await res.json();
+	if (!res.ok) throw new Error(`Cabin has not updated - ${res.statusText}`);
 
-		throw new Error(`${res.status} - ${data.message} `);
+	if (typeof body.image === "string") return;
+
+	// storing the cabin image in supabase storage later
+	const imageObj = body.image;
+
+	const { error } = await supabase.storage
+		.from("cabin-images")
+		.upload(`${imageName}`, imageObj);
+
+	if (error) {
+		// await deleteCabin(id);
+		throw new Error("Cabin image not uploaded");
 	}
+
 	// return data;
 }

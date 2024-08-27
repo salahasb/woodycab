@@ -68,7 +68,6 @@ function CabinOptions({ cabin }) {
 						deleteCabin(id, {
 							onSettled: () => {
 								close();
-								console.log(close);
 							},
 						})
 					}

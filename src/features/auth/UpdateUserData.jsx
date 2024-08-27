@@ -6,6 +6,7 @@ import useUser from "./useUser";
 import useUpdateUser from "./useUpdateUser";
 import { MiniSpinner } from "../../ui/LoadingSpinners";
 import { useForm } from "react-hook-form";
+import FileInput from "../../ui/FileInput";
 
 const CurrentHeading = styled(Heading)`
 	margin-bottom: 2rem;
@@ -43,6 +44,7 @@ function UpdateUserData() {
 			{
 				data: {
 					name,
+					avatar,
 				},
 			},
 			{
@@ -82,13 +84,12 @@ function UpdateUserData() {
 
 				<Form.Row>
 					<Form.Label htmlFor="avatar">Avatar image</Form.Label>
-					<Form.Input
-						disabled={isUpdating}
+					<FileInput
 						type="file"
 						id="avatar"
+						accept="image/*"
 						{...register("avatar")}
 					/>
-					<p>{errors?.avatar?.message}</p>
 				</Form.Row>
 
 				<Form.Row>

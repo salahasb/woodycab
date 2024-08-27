@@ -9,6 +9,7 @@ import useEditCabin from "./useEditCabin";
 import { MiniSpinner } from "../../ui/LoadingSpinners";
 import { useToaster } from "../../contexts/ToasterContext";
 import { useEffect } from "react";
+import FileInput from "../../ui/FileInput";
 
 function CabinForm({ cabin = {}, onCloseModal }) {
 	const { id, name, image, maxCapacity, regularPrice, discount, description } =
@@ -39,15 +40,18 @@ function CabinForm({ cabin = {}, onCloseModal }) {
 
 		if (id)
 			editCabin(
-				{ id, body: data },
+				{ id, body: { ...data, image: data.image[0] || image } },
 				{
 					onSuccess: () => handleReset(`The Cabin has updated successfully`),
 				}
 			);
 		else
-			createCabin(data, {
-				onSuccess: () => handleReset(`The Cabin has Created successfully`),
-			});
+			createCabin(
+				{ ...data, image: data.image[0] },
+				{
+					onSuccess: () => handleReset(`The Cabin has Created successfully`),
+				}
+			);
 	}
 
 	function onError(errors) {
@@ -108,6 +112,7 @@ function CabinForm({ cabin = {}, onCloseModal }) {
 
 				<Form.Error>{errors?.regularPrice?.message}</Form.Error>
 			</Form.Row>
+
 			<Form.Row>
 				<Form.Label htmlFor="discount">Discount</Form.Label>
 				<Form.Input
@@ -124,6 +129,7 @@ function CabinForm({ cabin = {}, onCloseModal }) {
 
 				<Form.Error>{errors?.discount?.message}</Form.Error>
 			</Form.Row>
+
 			<Form.Row>
 				<Form.Label htmlFor="description">Description for website</Form.Label>
 				<Form.TextArea
@@ -136,10 +142,20 @@ function CabinForm({ cabin = {}, onCloseModal }) {
 
 				<Form.Error>{errors?.description?.message}</Form.Error>
 			</Form.Row>
+
 			<Form.Row>
-				<Form.Label>Image</Form.Label>
-				{/* <Form.Label htmlFor="6">Cabin photo</Form.Label> */}
+				<Form.Label $shrink>Image</Form.Label>
+				<FileInput
+					type="file"
+					id="image"
+					accept="image/*"
+					{...register("image", {
+						required: id ? false : "This field is required",
+					})}
+				/>
+				<Form.Error>{errors?.image?.message}</Form.Error>
 			</Form.Row>
+
 			<Form.Row>
 				<Button $variation="secondary" type="reset" onClick={onCloseModal}>
 					Cancel

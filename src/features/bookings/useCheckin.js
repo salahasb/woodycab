@@ -12,7 +12,6 @@ function useCheckin() {
 			updateBooking(id, { status: "checked-in", isPaid: true, ...body }),
 
 		onSuccess: (id) => {
-			console.log(id);
 			addToaster("success", `the Booking ${id} has successfully checked-in`);
 
 			// queryClient.invalidateQueries(["booking", id]);
