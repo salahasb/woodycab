@@ -2,6 +2,7 @@
 // import { differenceInDays } from "date-fns/esm";
 
 import { differenceInDays, formatDistance, parseISO } from "date-fns";
+import { supabaseUrl } from "../services/supabase";
 
 // We want to make this function work for both Date objects and strings (which come from Supabase)
 export const subtractDates = (dateStr1, dateStr2) =>
@@ -38,4 +39,14 @@ export function filterCabins(cabins, curFilter) {
 			? cabins.filter((c) => c.discount)
 			: cabins.filter((c) => !c.discount);
 	return filteredCabins;
+}
+
+export function generateImageNameAndUrl(imageFileObj, supabaseBucketName) {
+	const imageName = `${Date.now()}-${imageFileObj.name
+		.replaceAll("/", "")
+		.replaceAll(" ", "-")}`;
+
+	const imageUrl = `${supabaseUrl}/storage/v1/object/public/${supabaseBucketName}/${imageName}`;
+
+	return { imageName, imageUrl };
 }

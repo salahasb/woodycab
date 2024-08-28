@@ -34,12 +34,14 @@ const AvatarBox = styled.div`
 const Avatar = styled.img`
 	width: 3rem;
 	border-radius: 50%;
+	aspect-ratio: 1;
 `;
 
 const HeaderMenu = styled.ul`
 	display: flex;
 	gap: 0.5rem;
 `;
+
 const HeaderButton = styled(IconButton)`
 	color: var(--color-brand-600);
 

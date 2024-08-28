@@ -38,18 +38,19 @@ function UpdateUserData() {
 	});
 
 	// event handlers
-	function handleUpdateUser({ name, avatar }) {
+	function handleUpdateUser({ name, avatar: [avatar] }) {
 		// return console.log(avatar[0]);
+
 		updateUser(
 			{
-				data: {
-					name,
-					avatar,
-				},
+				name,
+				avatar,
 			},
+
 			{
 				onSuccess: () => {
 					addToaster("success", "The user has updated successfully");
+					reset({ avatar: "" });
 				},
 			}
 		);
@@ -57,7 +58,7 @@ function UpdateUserData() {
 
 	function handleReset(e) {
 		e.preventDefault();
-		reset({ name: currentName });
+		reset({ name: currentName, avatar: "" });
 	}
 
 	return (
@@ -67,7 +68,6 @@ function UpdateUserData() {
 				<Form.Row>
 					<Form.Label htmlFor="email">Email address</Form.Label>
 					<Form.Input type="email" id="email" disabled {...register("email")} />
-					<p></p>
 				</Form.Row>
 
 				<Form.Row>

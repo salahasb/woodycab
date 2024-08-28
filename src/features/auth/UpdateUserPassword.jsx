@@ -31,6 +31,9 @@ function UpdateUserPassword() {
 			onSuccess: () => {
 				addToaster("success", "The password has updated successfully");
 			},
+			onError: (error) => {
+				addToaster("error", error.message);
+			},
 		};
 
 		updateUser(

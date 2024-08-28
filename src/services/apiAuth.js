@@ -1,4 +1,10 @@
-import { AUTH_ENDPOINT, supabaseKey, supabaseUrl } from "./supabase";
+import { generateImageNameAndUrl } from "../utils/helpers";
+import supabase, {
+	AUTH_ENDPOINT,
+	AVATARS_BUCKET_NAME,
+	supabaseKey,
+	supabaseUrl,
+} from "./supabase";
 
 export async function SignUpAuth(body) {
 	const res = await fetch(`${supabaseUrl}/${AUTH_ENDPOINT}/signup`, {
@@ -67,10 +73,26 @@ export async function getUser() {
 	return data;
 }
 
-export async function updateUserAuth(body) {
+export async function updateUserAuth({ name, avatar, password }) {
 	const token = localStorage.getItem("authToken");
-
 	if (!token) throw new Error(`Token Not Found!`);
+
+	const body = { data: {} };
+
+	if (password) body.password = password;
+	else body.data.name = name;
+
+	let imageName;
+
+	if (avatar) {
+		const { imageName: newImageName, imageUrl } = generateImageNameAndUrl(
+			avatar,
+			AVATARS_BUCKET_NAME
+		);
+
+		imageName = newImageName;
+		body.data.avatar = imageUrl;
+	}
 
 	const res = await fetch(`${supabaseUrl}/${AUTH_ENDPOINT}/user`, {
 		headers: { apikey: supabaseKey, Authorization: `Bearer ${token}` },
@@ -79,8 +101,16 @@ export async function updateUserAuth(body) {
 	});
 
 	const data = await res.json();
+	if (!res.ok) throw new Error(data.msg || "Failed to update user");
 
-	if (!res.ok) throw new Error(`${data.msg}`);
-	console.log(data);
+	// update user avatar in supabase storage
+	if (avatar) {
+		const { error } = await supabase.storage
+			.from(AVATARS_BUCKET_NAME)
+			.upload(imageName, avatar);
+
+		if (error) throw new Error("avatar image not uploaded");
+	}
+
 	return data;
 }

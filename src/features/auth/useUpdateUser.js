@@ -12,6 +12,7 @@ function useUpdateUser() {
 		mutationFn: updateUserAuth,
 		onSuccess: (user) => {
 			// queryClient.invalidateQueries(["user"]);
+			console.log(user);
 			queryClient.setQueryData(["user"], user);
 		},
 		onError: (err) => {
