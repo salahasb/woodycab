@@ -3,12 +3,17 @@ import { getBookings } from "../../services/apiBookings";
 import { useSearchParams } from "react-router-dom";
 
 function useBookings() {
-	const [searchParams] = useSearchParams({ filterBy: "all" });
-	const currentFilter = searchParams.get("filterBy");
+	const [searchParams] = useSearchParams({
+		filterBy: "all",
+		page: 1,
+	});
+
+	const filterBy = searchParams.get("filterBy");
+	const sortBy = searchParams.get("sortBy");
 
 	const { data, isLoading, error } = useQuery({
-		queryKey: ["bookings", currentFilter],
-		queryFn: () => getBookings(currentFilter),
+		queryKey: ["bookings", { filterBy, sortBy }],
+		queryFn: () => getBookings(filterBy, sortBy),
 		// cacheTime: 0,
 		// staleTime: Infinity,
 	});

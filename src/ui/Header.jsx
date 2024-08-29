@@ -31,10 +31,19 @@ const AvatarBox = styled.div`
 	}
 `;
 
-const Avatar = styled.img`
-	width: 3rem;
+const Avatar = styled.div`
 	border-radius: 50%;
+	width: 3rem;
 	aspect-ratio: 1;
+	border-radius: 100%;
+	overflow: hidden;
+
+	& img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
 `;
 
 const HeaderMenu = styled.ul`
@@ -65,10 +74,12 @@ function Header() {
 	return (
 		<StyledHeader>
 			<AvatarBox>
-				<Avatar
-					src={avatar || "/src/data/img/default-user.jpg"}
-					alt="User profile picture"
-				/>
+				<Avatar>
+					<img
+						src={avatar || "/src/data/img/default-user.jpg"}
+						alt="User profile picture"
+					/>
+				</Avatar>
 				<span>{name}</span>
 			</AvatarBox>
 

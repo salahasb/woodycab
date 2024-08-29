@@ -1,26 +1,36 @@
-import { supabaseKey, supabaseUrl } from "./supabase";
+import supabase, { supabaseKey, supabaseUrl } from "./supabase";
 
-export async function getBookings(filter) {
-	const token = localStorage.getItem("authToken");
+export async function getBookings(filterBy, sortBy) {
+	let query = supabase
+		.from("bookings")
+		.select("*, cabins(name), guests(fullName, email)");
 
-	if (!token) throw new Error(`Token Not Found!`);
+	if (filterBy !== "all") query.eq("status", filterBy);
 
-	const filterQueryParam =
-		filter && filter !== "all" ? `status=eq.${filter}&` : "";
+	if (sortBy) {
+		const [sort, order] = sortBy.split("-");
+		const isAscending = order === "asc";
 
-	const res = await fetch(
-		`${supabaseUrl}/rest/v1/bookings?${filterQueryParam}select=*,cabins(name),guests(fullName,email)`,
-		{
-			headers: {
-				apikey: supabaseKey,
-				Authorization: `Bearer ${token}`,
-			},
-		}
-	);
+		query.order(sort, { ascending: isAscending });
+	}
 
-	const data = await res.json();
+	const { data, error } = await query;
 
-	if (!res.ok) throw new Error(`${res.status} - ${data.message}`);
+	console.log(data);
+	//   .order('id', { ascending: false })
+	// const res = await fetch(
+	// 	`${supabaseUrl}/rest/v1/bookings?${filterQueryParam}select=*,cabins(name),guests(fullName,email)`,
+	// 	{
+	// 		headers: {
+	// 			apikey: supabaseKey,
+	// 			Authorization: `Bearer ${token}`,
+	// 		},
+	// 	}
+	// );
+
+	// const data = await res.json();
+
+	if (error) throw new Error(data.message || "failed to get bookings");
 
 	return data;
 }

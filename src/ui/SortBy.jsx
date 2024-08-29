@@ -12,11 +12,9 @@ const Select = styled.select`
 `;
 
 function SortBy({ sorts }) {
-	const [searchParams, setSearchParams] = useSearchParams({
-		sortBy: "name-asc",
-	});
+	const [searchParams, setSearchParams] = useSearchParams();
 
-	const curSort = searchParams.get("sortBy");
+	const curSort = searchParams.get("sortBy") || "";
 
 	// console.log(currentSort);
 

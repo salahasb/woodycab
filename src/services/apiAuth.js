@@ -68,7 +68,7 @@ export async function getUser() {
 
 	const data = await res.json();
 
-	if (!res.ok) throw new Error(`${data.msg}`);
+	if (!res.ok) throw new Error(data.msg || "Authentication error");
 
 	return data;
 }
@@ -94,6 +94,7 @@ export async function updateUserAuth({ name, avatar, password }) {
 		body.data.avatar = imageUrl;
 	}
 
+	// update user info + avatar in user table
 	const res = await fetch(`${supabaseUrl}/${AUTH_ENDPOINT}/user`, {
 		headers: { apikey: supabaseKey, Authorization: `Bearer ${token}` },
 		method: "PUT",
