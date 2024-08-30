@@ -72,7 +72,7 @@ export async function postCabin(data) {
 
 	// Delete cabin if cabin image didn't successfully upload
 	if (error) {
-		await deleteCabin(newCabin.id);
+		// await deleteCabin(newCabin.id);
 		throw new Error("Cabin image has not uploaded");
 	}
 

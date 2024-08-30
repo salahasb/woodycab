@@ -1,9 +1,9 @@
 import supabase, { supabaseKey, supabaseUrl } from "./supabase";
 
-export async function getBookings(filterBy, sortBy) {
+export async function getBookings(filterBy, sortBy, rangeFrom, rangeTo) {
 	let query = supabase
 		.from("bookings")
-		.select("*, cabins(name), guests(fullName, email)");
+		.select("*, cabins(name), guests(fullName, email)", { count: "exact" });
 
 	if (filterBy !== "all") query.eq("status", filterBy);
 
@@ -14,25 +14,14 @@ export async function getBookings(filterBy, sortBy) {
 		query.order(sort, { ascending: isAscending });
 	}
 
-	const { data, error } = await query;
+	const { data, error, count } = await query.range(rangeFrom, rangeTo - 1);
 
-	console.log(data);
-	//   .order('id', { ascending: false })
-	// const res = await fetch(
-	// 	`${supabaseUrl}/rest/v1/bookings?${filterQueryParam}select=*,cabins(name),guests(fullName,email)`,
-	// 	{
-	// 		headers: {
-	// 			apikey: supabaseKey,
-	// 			Authorization: `Bearer ${token}`,
-	// 		},
-	// 	}
-	// );
+	if ((error && error.code === "PGRST103") || (rangeFrom && !data.length))
+		throw new Error("range error");
 
-	// const data = await res.json();
+	if (error) throw new Error(error.message || "failed to get bookings");
 
-	if (error) throw new Error(data.message || "failed to get bookings");
-
-	return data;
+	return { data, count };
 }
 
 export async function getBooking(id) {

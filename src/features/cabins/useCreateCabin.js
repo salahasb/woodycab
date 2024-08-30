@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postCabin } from "../../services/apiCabins";
-import { useToaster } from "../../contexts/ToasterContext";
 
 function useCreateCabin() {
 	const queryClient = useQueryClient();

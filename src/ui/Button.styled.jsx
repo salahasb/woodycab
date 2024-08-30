@@ -60,7 +60,7 @@ const styles = {
 		justify-content: center;
 		gap: 0.5rem;
 
-		&:hover {
+		&:not(:disabled):hover {
 			background-color: var(--color-brand-700);
 			color: var(--color-brand-50);
 		}

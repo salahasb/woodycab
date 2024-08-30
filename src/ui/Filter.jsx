@@ -17,6 +17,9 @@ function Filter({ filters }) {
 	const curFilter = searchParams.get("filterBy");
 
 	function handleSearchParams(filterValue) {
+		// reset the "page" query param first to reset the pagination
+		searchParams.delete("page");
+
 		searchParams.set("filterBy", filterValue);
 		setSearchParams(searchParams);
 	}

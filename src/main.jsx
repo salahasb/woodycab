@@ -2,19 +2,19 @@ import ReactDOM from "react-dom/client";
 
 import App from "./App.jsx";
 import GlobalStyles from "./styles/GlobalStyles.js";
-import { useEffect, useState } from "react";
+import { StrictMode, useEffect, useState } from "react";
 import { getBooking } from "./services/apiBookings.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-	//<React.StrictMode>
-	<>
-		<GlobalStyles />
+	<StrictMode>
+		<>
+			<GlobalStyles />
 
-		<App />
+			<App />
 
-		{/* <Parent /> */}
-	</>
-	//</React.StrictMode>
+			{/* <Parent /> */}
+		</>
+	</StrictMode>
 );
 
 // function Parent() {

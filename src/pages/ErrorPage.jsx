@@ -41,27 +41,28 @@ function ErrorPage() {
 	return (
 		<StyledErrorPage>
 			<Heading>Oops!</Heading>
-
+			{/* 
 			<Description>
 				{error.status} - {error.statusText}
-			</Description>
-
-			<Description $bold>
-				{isConnectionError ? errMsg : error.message}
-			</Description>
-
+			</Description> */}
+			<Description $bold>{"Something went very wrong"}</Description>
+			{/* 
 			{isConnectionError && (
 				<Button onClick={() => navigate(0)}>
 					<IoReload /> Reload
 				</Button>
-			)}
-
-			{!isConnectionError && (
+			)} */}
+			{/* {!isConnectionError && (
 				<Button type="pagination" onClick={() => navigate(-1)}>
 					<IoArrowBackOutline />
 					Go back
 				</Button>
-			)}
+			)} */}
+			{
+				<Button type="pagination" onClick={() => navigate("/")}>
+					Go home
+				</Button>
+			}
 		</StyledErrorPage>
 	);
 }
