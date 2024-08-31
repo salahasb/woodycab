@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { getBookings } from "../../services/apiBookings";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../utils/constants";
+import { useEffect } from "react";
 
 function useBookings() {
-	const [searchParams] = useSearchParams({
+	// query params
+	const [searchParams, setSearchParams] = useSearchParams({
 		filterBy: "all",
 		page: 1,
 	});
@@ -17,14 +19,19 @@ function useBookings() {
 	const rangeFrom = !page ? 0 : page * PAGE_SIZE - PAGE_SIZE;
 	const rangeTo = !page ? PAGE_SIZE : page * PAGE_SIZE;
 
-	// console.log(rangeFrom, rangeTo);
-
+	//  fetching bookings
 	const { data, isLoading, error } = useQuery({
 		queryKey: ["bookings", { filterBy, sortBy, page }],
 		queryFn: () => getBookings(filterBy, sortBy, rangeFrom, rangeTo),
-		// cacheTime: 0,
-		// staleTime: Infinity,
 	});
+
+	// in case if user set non-existing "page" param in the URL
+	useEffect(() => {
+		if (error?.message !== "range error") return;
+		searchParams.delete("page");
+
+		setSearchParams(searchParams);
+	}, [searchParams, setSearchParams, error]);
 
 	return { data: { ...data, rangeFrom, rangeTo } || {}, isLoading, error };
 }

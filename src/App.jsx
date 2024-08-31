@@ -49,11 +49,11 @@ const router = createBrowserRouter([
 			{ path: "settings", element: <Settings /> },
 			{ path: "account", element: <Account /> },
 		],
-		errorElement: <ErrorPage />,
 		// ErrorBoundary: ErrorPage,
+		errorElement: <ErrorPage />,
 	},
-	{ path: "login", element: <Login />, ErrorBoundary: ErrorPage },
-	{ path: "*", element: <h1> Not Found</h1>, ErrorBoundary: ErrorPage },
+	{ path: "login", element: <Login />, errorElement: <ErrorPage /> },
+	{ path: "*", element: <h1> Not Found</h1>, errorElement: <ErrorPage /> },
 ]);
 
 const queryClient = new QueryClient({

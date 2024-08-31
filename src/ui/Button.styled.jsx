@@ -64,6 +64,11 @@ const styles = {
 			background-color: var(--color-brand-700);
 			color: var(--color-brand-50);
 		}
+
+		& svg {
+			stroke-width: 10rem;
+			margin-bottom: 2px;
+		}
 	`,
 	back: css`
 		display: flex;

@@ -21,6 +21,7 @@ const CommonRow = styled.div`
 const StyledHeader = styled(CommonRow)`
 	background-color: var(--color-grey-100);
 	border: var(--border-main);
+	border-bottom: 0;
 	padding: 1.6rem 1.4rem;
 
 	& div {
@@ -35,22 +36,36 @@ const StyledRow = styled(CommonRow)`
 	background-color: var(--color-grey-50);
 	border-bottom: var(--border-main);
 	padding: 1.6rem 1.6rem;
-`;
 
-const StyledBody = styled.section`
-	margin: 0.4rem 0;
+	&:last-of-type {
+		border-bottom: 0;
+	}
 `;
 
 const Footer = styled.footer`
-	background-color: var(--color-grey-50);
+	background-color: var(--color-grey-100);
+	border: var(--border-main);
+	border-top: 0;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 1.2rem 1.5rem;
+	font-size: 1.4rem;
+	color: var(--color-grey-600);
+	font-weight: 500;
 
 	/* This will hide the footer when it contains no child elements. Possible thanks to the parent selector :has 🎉 */
 	&:not(:has(*)) {
 		display: none;
+	}
+
+	& span {
+		font-weight: 600;
+	}
+
+	& > div {
+		display: flex;
+		gap: 1rem;
 	}
 `;
 
@@ -84,7 +99,7 @@ function Row({ children }) {
 function Body({ data, render }) {
 	if (!data.length) return <Empty>No data to show at the moment</Empty>;
 
-	return <StyledBody>{data.map(render)}</StyledBody>;
+	return <div>{data.map(render)}</div>;
 }
 
 Table.Footer = Footer;
