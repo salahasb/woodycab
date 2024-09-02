@@ -7,11 +7,11 @@ import { useEffect } from "react";
 function useBookings() {
 	// query params
 	const [searchParams, setSearchParams] = useSearchParams({
-		filterBy: "all",
+		status: "all",
 		page: 1,
 	});
 
-	const filterBy = searchParams.get("filterBy");
+	const filterBy = searchParams.get("status");
 	const sortBy = searchParams.get("sortBy");
 	const page = searchParams.get("page");
 

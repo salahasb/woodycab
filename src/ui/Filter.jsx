@@ -12,31 +12,36 @@ const StyledFilter = styled.div`
 	border-radius: 5px;
 `;
 
-function Filter({ filters }) {
-	const [searchParams, setSearchParams] = useSearchParams({ filterBy: "all" });
-	const curFilter = searchParams.get("filterBy");
+function Filter({ filters, resource }) {
+	const [searchParams, setSearchParams] = useSearchParams({
+		[filters.at(0).filterBy]: filters.at(0).value,
+	});
 
-	function handleSearchParams(filterValue) {
+	function handleSearchParams(filterBy, filterValue) {
 		// reset the "page" query param first to reset the pagination
-		searchParams.delete("page");
+		if (resource === "table") searchParams.delete("page");
 
-		searchParams.set("filterBy", filterValue);
+		searchParams.set(filterBy, filterValue);
 		setSearchParams(searchParams);
 	}
-
 	return (
 		<StyledFilter>
-			{filters.map((filter) => (
-				<Button
-					key={filter.value}
-					onClick={() => handleSearchParams(filter.value)}
-					$variation="filter"
-					className={filter.value === curFilter && "active"}
-					disabled={filter.value === curFilter}
-				>
-					{filter.label}
-				</Button>
-			))}
+			{filters.map((filter) => {
+				const curFilter =
+					searchParams.get(filter.filterBy) || filters.at(0).value;
+
+				return (
+					<Button
+						key={filter.value}
+						onClick={() => handleSearchParams(filter.filterBy, filter.value)}
+						$variation="filter"
+						className={filter.value === curFilter && "active"}
+						disabled={filter.value === curFilter}
+					>
+						{filter.label}
+					</Button>
+				);
+			})}
 		</StyledFilter>
 	);
 }

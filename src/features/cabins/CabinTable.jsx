@@ -10,14 +10,14 @@ function CabinTable() {
 	// React Query hook
 	const { isLoading, error, cabins } = useCabins();
 	const [searchParams] = useSearchParams({
-		filterBy: "all",
+		discount: "all",
 		sortBy: "name-asc",
 	});
 
 	if (isLoading) return <MainSpinner />;
 
 	// Filter
-	const curFilter = searchParams.get("filterBy");
+	const curFilter = searchParams.get("discount") || "all";
 	const filteredCabins =
 		curFilter === "all" ? cabins : filterCabins(cabins, curFilter);
 

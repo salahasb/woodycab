@@ -5,7 +5,7 @@ export async function getBookings(filterBy, sortBy, rangeFrom, rangeTo) {
 		.from("bookings")
 		.select("*, cabins(name), guests(fullName, email)", { count: "exact" });
 
-	if (filterBy !== "all") query.eq("status", filterBy);
+	if (filterBy && filterBy !== "all") query.eq("status", filterBy);
 
 	if (sortBy) {
 		const [sort, order] = sortBy.split("-");
