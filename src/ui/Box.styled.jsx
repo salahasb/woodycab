@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import { css } from "styled-components";
 
-const Box = styled.div`
-	padding: ${({ padding }) => padding};
-	background-color: var(--color-grey-100);
+const CommonBox = css`
+	background-color: var(--color-grey-0);
 	border: var(--color-grey-400);
+	border-radius: 4px;
 `;
 
-export default Box;
+export default CommonBox;

@@ -1,4 +1,5 @@
 import supabase, { supabaseKey, supabaseUrl } from "./supabase";
+import { formatISO } from "date-fns";
 
 export async function getBookings(filterBy, sortBy, rangeFrom, rangeTo) {
 	let query = supabase
@@ -92,4 +93,29 @@ export async function updateBooking(id, body) {
 	}
 
 	return id;
+}
+
+export async function getRecentBookings(date) {
+	const { data, error, count } = await supabase
+		.from("bookings")
+		.select("totalPrice, status, isPaid", { count: "exact" })
+		.gte("created_at", date)
+		.eq("isPaid", true);
+
+	if (error) throw new Error(error.message || "Bookings not found");
+	console.log(data);
+	return { data, count };
+}
+
+export async function getRecentStays(date) {
+	const { data, error, count } = await supabase
+		.from("bookings")
+		.select("*, guests(fullName)", { count: "exact" })
+		.gte("startDate", date)
+		.lte("startDate", formatISO(Date.now()))
+		.or("status.eq.checked-in,status.eq.checked-out");
+
+	if (error) throw new Error(error.message || "Bookings not found");
+	console.log(data);
+	return { data, count };
 }
