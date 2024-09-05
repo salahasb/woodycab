@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import CommonBox from "../../ui/Box.styled";
-import Button from "../../ui/Button.styled";
-import Tag from "../../ui/Tag";
-import { Flag } from "../../ui/Flag.styled";
+import useTodayBookings from "./useTodayBookings";
+import TodayBookingItem from "./TodayBookingItem";
 
 const StyledTodayBookings = styled.div`
 	${CommonBox}
@@ -16,25 +15,31 @@ const StyledTodayBookings = styled.div`
 	}
 
 	& > ul {
-		& li {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			border-top: 1px solid var(--color-grey-200);
-			padding: 0.4rem 0;
-			font-weight: 500;
+		overflow-y: auto;
+		max-height: 20rem;
 
-			/* last li */
-			&:last-child {
+		& li {
+			display: grid;
+			grid-template-columns: 0.5fr 1fr 1fr auto;
+			gap: 1.4rem;
+			align-items: center;
+			padding: 1rem 0;
+			font-weight: 500;
+			border-bottom: 1px solid var(--color-grey-200);
+
+			/* all li except the last &:not(:last-child) {
 				border-bottom: 1px solid var(--color-grey-200);
-			}
+			} */
 
 			/* Guest name */
 			& > div:nth-child(2) {
 				display: flex;
+				align-items: center;
+				/* justify-self: start; */
 
 				& img {
 					margin-right: 1rem;
+					/* height: rem; */
 				}
 
 				& span {
@@ -50,38 +55,28 @@ const StyledTodayBookings = styled.div`
 
 			/* Button */
 			& button:last-child {
-				padding: 0.2rem 1.2rem;
-				font-size: 1.1rem;
+				padding: 0.4rem 0.6rem;
+				font-size: 1rem;
+				font-weight: 600;
 				text-transform: uppercase;
-				width: 8.8rem;
+				width: 8.6rem;
 			}
 		}
 	}
 `;
 
 function TodayBookings() {
-	const {} = useTodayBookings();
+	const { data: todayBookings, isLoading, error } = useTodayBookings();
+
+	if (isLoading) return;
 	return (
 		<StyledTodayBookings>
 			<h2>Today</h2>
 
 			<ul>
-				<li>
-					<Tag $type="green">arriving</Tag>
-					<div>
-						{" "}
-						<Flag /> <span>name </span>
-					</div>
-					<span>11 nights</span>
-					<Button>Check in</Button>
-				</li>
-				<li>
-					<Tag $type="blue">departing</Tag>{" "}
-					<div>
-						<Flag /> <span>name </span>
-					</div>
-					<span>11 nights</span> <Button>Check out</Button>
-				</li>
+				{todayBookings.map((booking) => (
+					<TodayBookingItem key={booking.id} booking={booking} />
+				))}
 			</ul>
 		</StyledTodayBookings>
 	);

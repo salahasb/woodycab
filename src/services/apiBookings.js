@@ -103,7 +103,7 @@ export async function getRecentBookings(date) {
 		.eq("isPaid", true);
 
 	if (error) throw new Error(error.message || "Bookings not found");
-	console.log(data);
+
 	return { data, count };
 }
 
@@ -116,6 +116,21 @@ export async function getRecentStays(date) {
 		.or("status.eq.checked-in,status.eq.checked-out");
 
 	if (error) throw new Error(error.message || "Bookings not found");
-	console.log(data);
 	return { data, count };
+}
+
+export async function getTodayBookings(date) {
+	const { data, error, count } = await supabase
+		.from("bookings")
+		.select("id, numNights, status, guests(fullName, nationality, countryFlag)")
+		.or(
+			`and(status.eq.unconfirmed,startDate.eq.${date}),and(status.eq.checked-in,endDate.eq.${date})`
+		);
+	// .eq("endDate", date);
+	// .lte("startDate", formatISO(Date.now()))
+	// .or("status.eq.checked-in,status.eq.checked-out");
+
+	if (error) throw new Error(error.message || "Bookings not found");
+	console.log(data);
+	return data;
 }
