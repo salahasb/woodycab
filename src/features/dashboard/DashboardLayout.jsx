@@ -8,6 +8,7 @@ import { formatISO, subDays } from "date-fns";
 import useRecentStays from "./useRecentStays";
 import useCabins from "../cabins/useCabins";
 import Stats from "./Stats";
+import TodayBookings from "./TodayBookings";
 
 const StyledDashboardLayout = styled.div`
 	display: grid;
@@ -56,6 +57,8 @@ function DashboardLayout() {
 				cabinsCount={cabins.length}
 				recentStays={recentStays}
 			/>
+
+			<TodayBookings />
 		</StyledDashboardLayout>
 	);
 }
