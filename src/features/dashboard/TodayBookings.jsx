@@ -9,7 +9,7 @@ const StyledTodayBookings = styled.div`
 	padding: 2.2rem;
 
 	& > h2 {
-		font-size: 2.4rem;
+		font-size: 2.2rem;
 		font-weight: 600;
 		margin-bottom: 2rem;
 	}
@@ -74,9 +74,13 @@ function TodayBookings() {
 			<h2>Today</h2>
 
 			<ul>
-				{todayBookings.map((booking) => (
-					<TodayBookingItem key={booking.id} booking={booking} />
-				))}
+				{todayBookings.length === 0 ? (
+					<p>No activities</p>
+				) : (
+					todayBookings.map((booking) => (
+						<TodayBookingItem key={booking.id} booking={booking} />
+					))
+				)}
 			</ul>
 		</StyledTodayBookings>
 	);

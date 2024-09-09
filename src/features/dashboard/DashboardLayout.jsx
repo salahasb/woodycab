@@ -9,6 +9,7 @@ import useRecentStays from "./useRecentStays";
 import useCabins from "../cabins/useCabins";
 import Stats from "./Stats";
 import TodayBookings from "./TodayBookings";
+import StaySummary from "./StaySummary";
 
 const StyledDashboardLayout = styled.div`
 	display: grid;
@@ -25,17 +26,18 @@ function DashboardLayout() {
 
 	// Recent bookings
 	const {
-		data: { data: recentBookings, count: bookingsCount },
+		data: { data: recentBookings },
 		bookingsError,
 		isLoadingBookings,
 	} = useRecentBookings(formattedDate, numDays);
 
 	// Recent stays
 	const {
-		data: { data: recentStays, count: staysCount },
+		data: { data: recentStays },
 		staysError,
 		isLoadingStays,
 	} = useRecentStays(formattedDate, numDays);
+
 	// Cabins
 	const {
 		cabins,
@@ -59,6 +61,8 @@ function DashboardLayout() {
 			/>
 
 			<TodayBookings />
+
+			<StaySummary stays={recentStays} />
 		</StyledDashboardLayout>
 	);
 }
