@@ -7,6 +7,7 @@ const StyledTable = styled.div`
 	display: flex;
 	flex-direction: column;
 	border-radius: var(--border-radius-tiny);
+	border: 1px solid var(--color-grey-200);
 `;
 
 const CommonRow = styled.div`
@@ -19,8 +20,8 @@ const CommonRow = styled.div`
 `;
 
 const StyledHeader = styled(CommonRow)`
-	background-color: var(--color-grey-100);
-	border: var(--border-main);
+	background-color: var(--color-grey-50);
+	/* border: var(--border-main); */
 	border-bottom: 0;
 	padding: 1.6rem 1.4rem;
 
@@ -33,7 +34,7 @@ const StyledHeader = styled(CommonRow)`
 `;
 
 const StyledRow = styled(CommonRow)`
-	background-color: var(--color-grey-50);
+	background-color: var(--color-grey-0);
 	border-bottom: var(--border-main);
 	padding: 1.6rem 1.6rem;
 
@@ -43,8 +44,7 @@ const StyledRow = styled(CommonRow)`
 `;
 
 const Footer = styled.footer`
-	background-color: var(--color-grey-100);
-	border: var(--border-main);
+	background-color: var(--color-grey-50);
 	border-top: 0;
 	display: flex;
 	align-items: center;

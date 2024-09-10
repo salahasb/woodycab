@@ -11,6 +11,7 @@ import useUser from "../features/auth/useUser";
 import useLogout from "../features/auth/useLogout";
 import { MiniSpinner } from "./LoadingSpinners";
 import { useState } from "react";
+import DarkModeToggle from "./DarkModeToggle";
 
 const StyledHeader = styled.header`
 	display: flex;
@@ -18,6 +19,7 @@ const StyledHeader = styled.header`
 	align-items: center;
 	gap: 3rem;
 	padding: 1rem 4rem;
+	background-color: var(--color-grey-0);
 `;
 
 const AvatarBox = styled.div`
@@ -90,9 +92,7 @@ function Header() {
 					</HeaderButton>
 				</li>
 				<li>
-					<HeaderButton>
-						<HiOutlineMoon />
-					</HeaderButton>
+					<DarkModeToggle />
 				</li>
 				<li>
 					<HeaderButton onClick={logout}>

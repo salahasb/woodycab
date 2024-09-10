@@ -5,7 +5,7 @@ const Select = styled.select`
 	font-size: 1.4rem;
 	font-weight: 500;
 	padding: 1rem;
-
+	background-color: var(--color-grey-0);
 	&:focus {
 		outline: 2px solid var(--color-brand-600);
 	}

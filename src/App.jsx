@@ -25,6 +25,7 @@ import Booking from "./pages/Booking.jsx";
 import ToasterList from "./ui/Toaster.jsx";
 import ProtectedRoute from "./ui/ProtectedRoute.jsx";
 import Login from "./pages/Login.jsx";
+import { DarkModeProvider } from "./contexts/DarkModeContext.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -70,14 +71,16 @@ const queryClient = new QueryClient({
 function App() {
 	return (
 		<QueryClientProvider client={queryClient}>
-			<ToasterProvider>
-				<ToasterList />
-				<ReactQueryDevtools initialIsOpen={false} />
-				<GlobalStyles />
-				<Suspense fallback={<MainSpinner $full />}>
-					<RouterProvider router={router} />
-				</Suspense>
-			</ToasterProvider>
+			<DarkModeProvider>
+				<ToasterProvider>
+					<ToasterList />
+					<ReactQueryDevtools initialIsOpen={false} />
+					<GlobalStyles />
+					<Suspense fallback={<MainSpinner $full />}>
+						<RouterProvider router={router} />
+					</Suspense>
+				</ToasterProvider>
+			</DarkModeProvider>
 		</QueryClientProvider>
 	);
 }

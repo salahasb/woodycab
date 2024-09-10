@@ -15,7 +15,7 @@ const StyledAppLayout = styled.div`
 `;
 
 const Main = styled.main`
-	background-color: var(--color-grey-100);
+	background-color: var(--color-grey-50);
 	padding: 5rem 20rem;
 	overflow-y: auto;
 `;

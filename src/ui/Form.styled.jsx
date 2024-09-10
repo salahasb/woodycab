@@ -66,7 +66,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-	border: var(--border-main);
+	border: solid 1px var(--color-grey-300);
 	outline: 0;
 	padding: 0.8rem 1rem;
 	border-radius: var(--border-radius-sm);
@@ -97,10 +97,11 @@ const Input = styled.input`
 `;
 
 const TextArea = styled.textarea`
-	border: var(--border-main);
+	border: solid 1px var(--color-grey-300);
 	outline: 0;
 	padding: 0.8rem 1rem;
 	border-radius: var(--border-radius-sm);
+	background-color: var(--color-grey-0);
 	/* flex: 1 0 100%; */
 
 	&:focus {

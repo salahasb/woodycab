@@ -15,22 +15,22 @@ const types = [
 	{
 		type: "success",
 		icon: BsCheck2,
-		color: "--color-green-700",
+		color: "green",
 	},
 	{
 		type: "error",
 		icon: BsX,
-		color: "--color-red-700",
+		color: "red",
 	},
 	{
 		type: "warning",
 		icon: BsExclamationTriangle,
-		color: "--color-yellow-500",
+		color: "yellow",
 	},
 	{
 		type: "info",
 		icon: BsExclamation,
-		color: "--color-blue-700",
+		color: "blue",
 	},
 ];
 
@@ -76,7 +76,7 @@ const StyledToaster = styled.li`
 		left: 0;
 		width: 100%;
 		height: 2px;
-		background-color: var(${({ $color }) => $color});
+		background-color: ${({ $color }) => $color};
 		animation: ${backward} ${TOAST_TIMEOUT / 1000}s linear forwards
 			${({ $pause }) => !$pause && "paused"};
 	}
@@ -84,7 +84,7 @@ const StyledToaster = styled.li`
 
 const IconBox = styled.div`
 	border-radius: 50%;
-	background-color: var(${({ $curToast }) => $curToast.color});
+	background-color: ${({ $curToast }) => $curToast.color};
 	display: flex;
 	align-items: center;
 	justify-content: center;

@@ -36,7 +36,8 @@ const StyledOption = styled.button`
 	display: flex;
 	align-items: center;
 	gap: 1.5rem;
-	background-color: #fff;
+	background-color: var(--color-grey-50);
+
 	padding: 1rem 2rem;
 	color: var(--color-grey-500);
 	transition: var(--button-transition);
@@ -91,24 +92,8 @@ function Toggle({ id }) {
 
 function List({ children, id }) {
 	const { currOpenedOption, closeOptions } = useContext(OptionsContext);
-	// const ref = useOutsideClick(closeOptions, false);
+
 	const ref = useOutsideClick(closeOptions);
-
-	// useEffect(() => {
-	// 	if (currOpenedOption !== id) return;
-
-	// 	function handleClick(e) {
-	// 		if (!ref.current.contains(e.target)) {
-	// 			closeOptions();
-	// 		}
-	// 	}
-
-	// 	document.addEventListener("click", handleClick);
-
-	// 	return () => {
-	// 		document.removeEventListener("click", handleClick);
-	// 	};
-	// }, [currOpenedOption, closeOptions, id]);
 
 	if (currOpenedOption !== id) return;
 
