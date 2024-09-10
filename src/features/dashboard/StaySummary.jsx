@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import CommonBox from "../../ui/Box.styled";
-import { Pie, PieChart } from "recharts";
+import {
+	Cell,
+	Legend,
+	Pie,
+	PieChart,
+	ResponsiveContainer,
+	Tooltip,
+} from "recharts";
 import { prepareData } from "./helpers";
 
 const StyledStaySummary = styled.div`
@@ -121,24 +128,36 @@ function StaySummary({ stays }) {
 		<StyledStaySummary>
 			<h2>Stay duration summary</h2>
 
-			<div>
+			{/* <div> */}
+			<ResponsiveContainer width={"100%"} height="82%">
 				<PieChart width={220} height={220}>
 					<Pie
 						data={chartData}
 						dataKey="value"
-						nameKey="name"
+						nameKey="duration"
 						cx="50%"
 						cy="50%"
 						innerRadius={82}
 						outerRadius={110}
 						fill="#82ca9d"
+						paddingAngle={2}
+					>
+						{chartData.map(({ color, duration }) => (
+							<Cell key={duration} fill={color} stroke={color} />
+						))}
+					</Pie>
+					<Tooltip />
+					<Legend
+						verticalAlign="middle"
+						align="right"
+						width="30%"
+						layout="vertical"
+						iconSize={15}
+						iconType="circle"
 					/>
 				</PieChart>
-
-				<ul>
-					<li>hello</li>
-				</ul>
-			</div>
+			</ResponsiveContainer>
+			{/* </div> */}
 		</StyledStaySummary>
 	);
 }
