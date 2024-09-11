@@ -3,7 +3,6 @@ import Options from "../../ui/Options";
 import Table from "../../ui/Table";
 import BookingRow from "./BookingRow";
 import useBookings from "./useBookings";
-
 import Pagination from "./Pagination";
 
 function BookingTable() {
@@ -15,12 +14,10 @@ function BookingTable() {
 
 	if (error?.message === "range error") return;
 
-	if (isLoading) return <MainSpinner />;
+	if (isLoading) return <MainSpinner $full />;
 
 	// for unexpected errors
 	if (error) throw new Error(error.message);
-
-	// console.log(isLastPage, count, rangeTo);
 
 	return (
 		<Options>

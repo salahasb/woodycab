@@ -13,7 +13,6 @@ function useCheckOut(id) {
 	} = useMutation({
 		mutationFn: () => updateBooking(id, { status: "checked-out" }),
 		onSuccess: () => {
-			console.log(id);
 			addToaster(
 				"success",
 				`the booking ${id} has been checked out successfully`

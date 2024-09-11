@@ -47,7 +47,7 @@ function DashboardLayout() {
 	const isLoading = isLoadingBookings || isLoadingStays || isLoadingCabins;
 	const error = bookingsError || staysError || cabinsError;
 
-	if (isLoading) return <MainSpinner />;
+	if (isLoading) return <MainSpinner $full />;
 
 	if (error) throw new Error();
 

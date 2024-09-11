@@ -10,7 +10,7 @@ function Settings() {
 		<OutletLayout heading="Update hotel settings">
 			<OutletLayout.Box $full>
 				{isLoading ? (
-					<MainSpinner />
+					<MainSpinner $full />
 				) : (
 					<UpdateSettingsForm settings={settings} />
 				)}
