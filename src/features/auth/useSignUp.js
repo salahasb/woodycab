@@ -8,7 +8,7 @@ function useSignUp() {
 	const { mutate: signUp, isLoading } = useMutation({
 		mutationFn: SignUpAuth,
 		onSuccess: (data) => {
-			addToaster("success", `the user has signed up successfully`);
+			addToaster("success", `the user has been signed up successfully`);
 		},
 		onError: (error) => {
 			console.log(11);

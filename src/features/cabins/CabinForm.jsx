@@ -42,14 +42,16 @@ function CabinForm({ cabin = {}, onCloseModal }) {
 			editCabin(
 				{ id, body: { ...data, image: data.image[0] || image } },
 				{
-					onSuccess: () => handleReset(`The Cabin has updated successfully`),
+					onSuccess: () =>
+						handleReset(`The Cabin has been updated successfully`),
 				}
 			);
 		else
 			createCabin(
 				{ ...data, image: data.image[0] },
 				{
-					onSuccess: () => handleReset(`The Cabin has Created successfully`),
+					onSuccess: () =>
+						handleReset(`The Cabin has been Created successfully`),
 				}
 			);
 	}

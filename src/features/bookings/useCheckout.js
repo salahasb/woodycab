@@ -14,7 +14,10 @@ function useCheckOut(id) {
 		mutationFn: () => updateBooking(id, { status: "checked-out" }),
 		onSuccess: () => {
 			console.log(id);
-			addToaster("success", `the booking ${id} has checked out successfully`),
+			addToaster(
+				"success",
+				`the booking ${id} has been checked out successfully`
+			),
 				//  to invalidate the current active query
 				queryClient.invalidateQueries({ active: true });
 		},

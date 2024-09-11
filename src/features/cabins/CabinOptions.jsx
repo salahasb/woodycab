@@ -21,7 +21,7 @@ function CabinOptions({ cabin }) {
 		const options = {
 			onSuccess: () => {
 				// show a success message
-				addToaster("success", "the cabin has duplicated successfully");
+				addToaster("success", "the cabin has been duplicated successfully");
 			},
 		};
 

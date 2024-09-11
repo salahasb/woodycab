@@ -10,7 +10,7 @@ function useDeleteBooking(id) {
 	const { isLoading: isDeleting, mutate: deleteBooking } = useMutation({
 		mutationFn: deleteBookingApi,
 		onSuccess: () => {
-			addToaster("success", `the booking ${id} has deleted successfully`);
+			addToaster("success", `the booking ${id} has been deleted successfully`);
 
 			queryClient.invalidateQueries({ active: true });
 			// queryClient.removeQueries(["booking", id]);

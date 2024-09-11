@@ -22,9 +22,11 @@ const SpinnerBox = styled.div`
 	align-items: center;
 	justify-content: center;
 	height: ${({ $full }) => ($full ? "100vh" : "100%")};
+	background-color: var(--color-grey-100);
 `;
 
 const StyledMainSpinner = styled(CommonSpinner)`
+	background-color: transparent;
 	width: 6.4rem;
 	height: 6.4rem;
 	color: var(--color-brand-600);

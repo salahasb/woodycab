@@ -29,7 +29,7 @@ function UpdateUserPassword() {
 		const options = {
 			onSettled: () => reset(),
 			onSuccess: () => {
-				addToaster("success", "The password has updated successfully");
+				addToaster("success", "The password has ben updated successfully");
 			},
 			onError: (error) => {
 				addToaster("error", error.message);

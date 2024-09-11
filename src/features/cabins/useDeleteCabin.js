@@ -12,7 +12,7 @@ function useDeleteCabin() {
 	} = useMutation({
 		mutationFn: deleteCabinApi,
 		onSuccess: () => {
-			addToaster("success", `The Cabin has deleted successfully`);
+			addToaster("success", `The Cabin has been deleted successfully`);
 
 			queryClient.invalidateQueries({
 				queryKey: ["cabins"],
