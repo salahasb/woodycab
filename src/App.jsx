@@ -72,8 +72,8 @@ function App() {
 			<DarkModeProvider>
 				<ToasterProvider>
 					<ToasterList />
-					<ReactQueryDevtools initialIsOpen={false} />
 					<GlobalStyles />
+					<ReactQueryDevtools initialIsOpen={false} />
 					<Suspense fallback={<MainSpinner $full />}>
 						<RouterProvider router={router} />
 					</Suspense>

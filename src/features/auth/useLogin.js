@@ -14,9 +14,9 @@ function useLogin() {
 	} = useMutation({
 		mutationFn: loginAuth,
 		onError: (error) => {
-			console.log(error.message);
-			if (error.message !== "Failed to fetch")
-				addToaster("error", "Provided email or password are incorrect");
+			if (error.message === "Invalid login credentials")
+				return addToaster("error", "Provided email or password are incorrect");
+			addToaster("error", "Failed to login");
 		},
 		onSuccess: (data) => {
 			console.log(data);

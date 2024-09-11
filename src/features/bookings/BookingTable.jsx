@@ -14,7 +14,7 @@ function BookingTable() {
 
 	if (error?.message === "range error") return;
 
-	if (isLoading) return <MainSpinner $full />;
+	if (isLoading) return <MainSpinner />;
 
 	// for unexpected errors
 	if (error) throw new Error(error.message);

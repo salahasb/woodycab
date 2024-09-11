@@ -4,26 +4,31 @@ import Button from "../ui/Button.styled";
 import { IoArrowBackOutline, IoReload } from "react-icons/io5";
 
 const StyledErrorPage = styled.div`
-	height: 100vh;
+	height: 100dvh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	padding-top: 12rem;
+	color: var(--color-grey-700);
+
 	gap: 1rem;
+	background-color: var(--color-grey-0);
 `;
 
 const Heading = styled.h1`
 	font-weight: 800;
 	font-size: 20rem;
-	color: var(--color-brand-950);
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 `;
 
 const Description = styled.p`
-	color: var(--color-grey-900);
+	margin-bottom: 2rem;
+	font-size: 2rem;
+
 	${({ $bold }) =>
 		$bold &&
 		css`
-			font-weight: bold;
+			font-weight: 600;
 		`}
 `;
 

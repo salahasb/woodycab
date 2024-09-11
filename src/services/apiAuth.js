@@ -15,62 +15,38 @@ export async function SignUpAuth(body) {
 
 	const data = await res.json();
 
-	if (!res.ok) throw new Error(`${data.msg}`);
+	if (!res.ok) throw new Error(data.msg || "Something went wrong");
 
 	return data;
 }
 
 export async function loginAuth(body) {
-	const res = await fetch(
-		`${supabaseUrl}/${AUTH_ENDPOINT}/token?grant_type=password`,
-		{
-			headers: { apikey: supabaseKey },
-			method: "POST",
-			body: JSON.stringify(body),
-		}
-	);
+	const {
+		data: {
+			user,
+			session: { access_token },
+		},
+		error,
+	} = await supabase.auth.signInWithPassword(body);
 
-	const data = await res.json();
+	if (error) throw new Error(error.message);
 
-	if (data.error) throw new Error(data.error);
-
-	return data;
+	return { user, access_token };
 }
 
 export async function logoutAuth() {
-	const token = localStorage.getItem("authToken");
-
-	if (!token) throw new Error(`Token Not Found!`);
-
-	const res = await fetch(`${supabaseUrl}/${AUTH_ENDPOINT}/logout`, {
-		headers: { apikey: supabaseKey, Authorization: `Bearer ${token}` },
-		method: "POST",
-	});
-
-	if (!res.ok) {
-		const data = await res.json();
-
-		throw new Error(`${data.msg}`);
-	}
+	const { error } = await supabase.auth.signOut();
 }
 
 export async function getUser() {
-	const token = localStorage.getItem("authToken");
+	const {
+		data: { user },
+		error,
+	} = await supabase.auth.getUser();
 
-	if (!token) throw new Error(`Token Not Found!`);
+	if (error) throw new Error(error.message);
 
-	const res = await fetch(`${supabaseUrl}/${AUTH_ENDPOINT}/user`, {
-		headers: {
-			apikey: supabaseKey,
-			Authorization: `Bearer ${token}`,
-		},
-	});
-
-	const data = await res.json();
-
-	if (!res.ok) throw new Error(data.msg || "Authentication error");
-
-	return data;
+	return user;
 }
 
 export async function updateUserAuth({ name, avatar, password }) {
