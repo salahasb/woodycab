@@ -14,6 +14,7 @@ const Cabins = lazy(() => import("./pages/Cabins.jsx"));
 const Bookings = lazy(() => import("./pages/Bookings.jsx"));
 const Users = lazy(() => import("./pages/Users.jsx"));
 const Settings = lazy(() => import("./pages/Settings.jsx"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage.jsx"));
 
 import GlobalStyles from "./styles/GlobalStyles.js";
 import ErrorPage from "./pages/ErrorPage.jsx";
@@ -50,20 +51,17 @@ const router = createBrowserRouter([
 			{ path: "settings", element: <Settings /> },
 			{ path: "account", element: <Account /> },
 		],
-		// ErrorBoundary: ErrorPage,
 		errorElement: <ErrorPage />,
+		// ErrorBoundary: ErrorPage,
 	},
 	{ path: "login", element: <Login />, errorElement: <ErrorPage /> },
-	{ path: "*", element: <h1> Not Found</h1>, errorElement: <ErrorPage /> },
+	{ path: "*", element: <NotFoundPage /> },
 ]);
 
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
-			// staleTime: 0,
-			// cacheTime: 0,
 			retry: false,
-			// useErrorBoundary: true,
 		},
 	},
 });
