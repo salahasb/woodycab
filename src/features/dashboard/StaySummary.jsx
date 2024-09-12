@@ -13,6 +13,8 @@ import { prepareData } from "./helpers";
 const StyledStaySummary = styled.div`
 	${CommonBox}
 	grid-column: span 2;
+	/* grid-row: span ; */
+
 	padding: 2.2rem;
 
 	& > h2 {

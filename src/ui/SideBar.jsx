@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import MainNav from "./MainNav";
 import Uploader from "../data/Uploader";
-import Logo from "./Logo.styled";
+import Logo from "./Logo";
 import { useDarkMode } from "../contexts/DarkModeContext";
 
 const StyledSideBar = styled.aside`
@@ -16,17 +16,11 @@ const StyledSideBar = styled.aside`
 `;
 
 function SideBar() {
-	const { isDarkMode } = useDarkMode();
-
-	const src = isDarkMode
-		? "/src/data/img/logo-dark.png"
-		: "/src/data/img/logo-light.png";
-
 	return (
 		<StyledSideBar>
-			<Logo src={src} />
+			<Logo />
 			<MainNav />
-			<Uploader />
+			{process.env.NODE_ENV === "development" && <Uploader />}
 		</StyledSideBar>
 	);
 }

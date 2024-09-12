@@ -2,6 +2,7 @@ import styled from "styled-components";
 import CommonBox from "../../ui/Box.styled";
 import useTodayBookings from "./useTodayBookings";
 import TodayBookingItem from "./TodayBookingItem";
+import { MainSpinner } from "../../ui/LoadingSpinners";
 
 const StyledTodayBookings = styled.div`
 	${CommonBox}
@@ -68,20 +69,22 @@ const StyledTodayBookings = styled.div`
 function TodayBookings() {
 	const { data: todayBookings, isLoading, error } = useTodayBookings();
 
-	if (isLoading) return;
 	return (
 		<StyledTodayBookings>
 			<h2>Today</h2>
-
-			<ul>
-				{todayBookings.length === 0 ? (
-					<p>No activities</p>
-				) : (
-					todayBookings.map((booking) => (
-						<TodayBookingItem key={booking.id} booking={booking} />
-					))
-				)}
-			</ul>
+			{isLoading ? (
+				<MainSpinner $color={"transparent"} />
+			) : (
+				<ul>
+					{todayBookings.length === 0 ? (
+						<p>No activities</p>
+					) : (
+						todayBookings.map((booking) => (
+							<TodayBookingItem key={booking.id} booking={booking} />
+						))
+					)}
+				</ul>
+			)}
 		</StyledTodayBookings>
 	);
 }

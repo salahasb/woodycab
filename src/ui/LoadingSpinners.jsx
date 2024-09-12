@@ -22,8 +22,9 @@ const SpinnerBox = styled.div`
 	align-items: center;
 	justify-content: center;
 	height: ${({ $full }) => ($full ? "100vh" : "100%")};
-	/* background-color: var(--color-grey-100); */
-	background-color: transparent;
+
+	background-color: ${({ $color }) => $color || "var(--color-grey-50)"};
+	/* background-color: ; */
 `;
 
 const StyledMainSpinner = styled(CommonSpinner)`
@@ -33,9 +34,9 @@ const StyledMainSpinner = styled(CommonSpinner)`
 	color: var(--color-brand-600);
 `;
 
-function MainSpinner({ $full }) {
+function MainSpinner({ $full, $color }) {
 	return (
-		<SpinnerBox $full={$full}>
+		<SpinnerBox $full={$full} $color={$color}>
 			<StyledMainSpinner />
 		</SpinnerBox>
 	);

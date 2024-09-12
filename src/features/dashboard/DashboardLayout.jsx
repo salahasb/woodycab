@@ -14,6 +14,7 @@ import StaySummary from "./StaySummary";
 const StyledDashboardLayout = styled.div`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: auto 33.8rem auto;
 	gap: 2rem;
 `;
 
@@ -49,7 +50,7 @@ function DashboardLayout() {
 
 	if (isLoading) return <MainSpinner />;
 
-	if (error) throw new Error();
+	if (error) throw Error();
 
 	return (
 		<StyledDashboardLayout>
