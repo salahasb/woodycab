@@ -21,15 +21,14 @@ export async function SignUpAuth(body) {
 }
 
 export async function loginAuth(body) {
-	const {
-		data: {
-			user,
-			session: { access_token },
-		},
-		error,
-	} = await supabase.auth.signInWithPassword(body);
+	const { data, error } = await supabase.auth.signInWithPassword(body);
 
 	if (error) throw new Error(error.message);
+
+	const {
+		user,
+		session: { access_token },
+	} = data;
 
 	return { user, access_token };
 }
