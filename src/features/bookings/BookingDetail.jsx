@@ -5,7 +5,6 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import Button from "../../ui/Button.styled";
 import BookingDataBox from "./BookingDataBox";
 import ButtonGroup from "../../ui/ButtonGroup";
-import { bookings } from "../../data/data-bookings";
 import useDeleteBooking from "./useDeleteBooking";
 import { useNavigate } from "react-router-dom";
 import useCheckOut from "./useCheckOut";
