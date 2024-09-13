@@ -7,7 +7,7 @@ import BookingDataBox from "./BookingDataBox";
 import ButtonGroup from "../../ui/ButtonGroup";
 import useDeleteBooking from "./useDeleteBooking";
 import { useNavigate } from "react-router-dom";
-import useCheckOut from "./useCheckOut";
+import useCheckOut from "./useCheckout";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import { useEffect } from "react";
