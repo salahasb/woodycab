@@ -10,6 +10,7 @@ import useCabins from "../cabins/useCabins";
 import Stats from "./Stats";
 import TodayBookings from "./TodayBookings";
 import StaySummary from "./StaySummary";
+import { useEffect } from "react";
 
 const StyledDashboardLayout = styled.div`
 	display: grid;
@@ -23,7 +24,13 @@ function DashboardLayout() {
 
 	const numDays = +searchParams.get("last");
 
-	const formattedDate = formatISO(subDays(new Date(), numDays));
+	let formattedDate;
+	try {
+		formattedDate = formatISO(subDays(new Date(), numDays));
+	} catch (error) {
+		// Set a default date if the formatting fails
+		formattedDate = formatISO(subDays(new Date(), 7));
+	}
 
 	// Recent bookings
 	const {
@@ -45,12 +52,14 @@ function DashboardLayout() {
 		error: cabinsError,
 		isLoading: isLoadingCabins,
 	} = useCabins();
+
 	const isLoading = isLoadingBookings || isLoadingStays || isLoadingCabins;
 	const error = bookingsError || staysError || cabinsError;
 
+	// Early returns
 	if (isLoading) return <MainSpinner />;
 
-	if (error) throw Error();
+	if (error) throw Error(error.message);
 
 	return (
 		<StyledDashboardLayout>

@@ -23,6 +23,7 @@ function useBookings() {
 	const { data, isLoading, error } = useQuery({
 		queryKey: ["bookings", { filterBy, sortBy, page }],
 		queryFn: () => getBookings(filterBy, sortBy, rangeFrom, rangeTo),
+		// retry: (failureCount, error) => console.log(11),
 	});
 
 	// in case if user set non-existing "page" param in the URL

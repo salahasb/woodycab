@@ -16,7 +16,7 @@ function Stats({ recentBookings, numDays, cabinsCount, recentStays }) {
 
 	const occupation =
 		recentStays.reduce((acc, cur) => acc + cur.numNights, 0) /
-		(numDays * cabinsCount);
+			(numDays * cabinsCount) || 0;
 
 	return (
 		<>

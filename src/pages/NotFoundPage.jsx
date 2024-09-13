@@ -9,6 +9,9 @@ const StyledNotFoundPage = styled.div`
 	justify-content: center;
 	width: 100%;
 	height: 100dvh;
+	background-color: var(--color-grey-0);
+	color: var(--color-grey-700);
+	gap: 2rem;
 
 	& > h1 {
 		font-size: 20rem;
@@ -18,7 +21,6 @@ const StyledNotFoundPage = styled.div`
 
 	& > p {
 		font-size: 5rem;
-		/* font-weight: 500; */
 		margin-bottom: 2rem;
 	}
 `;

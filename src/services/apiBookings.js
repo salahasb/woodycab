@@ -17,7 +17,7 @@ export async function getBookings(filterBy, sortBy, rangeFrom, rangeTo) {
 
 	const { data, error, count } = await query.range(rangeFrom, rangeTo - 1);
 
-	if ((error && error.code === "PGRST103") || (rangeFrom && !data.length))
+	if ((error && error.code === "PGRST103") || (rangeFrom && !data?.length))
 		throw new Error("range error");
 
 	if (error) throw new Error(error.message || "failed to get bookings");

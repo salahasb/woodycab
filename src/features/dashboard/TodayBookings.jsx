@@ -17,7 +17,7 @@ const StyledTodayBookings = styled.div`
 
 	& > ul {
 		overflow-y: auto;
-		max-height: 20rem;
+		max-height: 80%;
 
 		& li {
 			display: grid;
