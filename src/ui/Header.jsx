@@ -67,7 +67,7 @@ function Header() {
 		user: {
 			user_metadata: { name, avatar },
 		},
-	} = useUser("header");
+	} = useUser();
 
 	const { logout, isLogingOut } = useLogout();
 
@@ -78,7 +78,7 @@ function Header() {
 			<AvatarBox>
 				<Avatar>
 					<img
-						src={avatar || "/src/data/img/default-user.jpg"}
+						src={avatar || "/img/default-user.jpg"}
 						alt="User profile picture"
 					/>
 				</Avatar>
