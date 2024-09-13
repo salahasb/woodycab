@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Options from "../../ui/Options";
 import { IoCheckbox, IoEye, IoTrash } from "react-icons/io5";
-import useCheckOut from "./useCheckOut";
+import useCheckOut from "./useCheckout";
 import useDeleteBooking from "./useDeleteBooking";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";

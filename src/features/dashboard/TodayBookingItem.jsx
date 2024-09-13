@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../ui/Button.styled";
 import { Flag } from "../../ui/Flag.styled";
 import Tag from "../../ui/Tag";
-import useCheckOut from "../bookings/useCheckOut";
+import useCheckOut from "../bookings/useCheckout";
 import { MiniSpinner } from "../../ui/LoadingSpinners";
 
 function TodayBookingItem({ booking }) {
