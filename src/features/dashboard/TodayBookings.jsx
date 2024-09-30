@@ -6,8 +6,14 @@ import { MainSpinner } from "../../ui/LoadingSpinners";
 
 const StyledTodayBookings = styled.div`
 	${CommonBox}
-	grid-column: span 2;
 	padding: 2.2rem;
+
+	/* temp */
+	width: 2rem;
+
+	@media (min-width: 1024px) {
+		grid-column: span 2;
+	}
 
 	& > h2 {
 		font-size: 2.2rem;

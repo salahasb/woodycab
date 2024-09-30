@@ -8,15 +8,25 @@ import useUser from "../features/auth/useUser";
 import { useEffect } from "react";
 
 const StyledAppLayout = styled.div`
-	display: grid;
+	/* display: grid;
 	grid-template-columns: 26rem 1fr;
 	grid-template-rows: auto 1fr;
-	height: 100vh;
+	height: 100vh; */
+	display: flex;
+	flex-direction: column;
+
+	@media (min-width: 1024px) {
+		display: grid;
+		grid-template-columns: 26rem 1fr;
+		grid-template-rows: auto 1fr;
+		height: 100vh;
+	}
 `;
 
 const Main = styled.main`
 	background-color: var(--color-grey-50);
-	padding: 5rem 20rem;
+	padding: 5rem 2rem;
+	margin: 0 auto;
 	overflow-y: auto;
 `;
 

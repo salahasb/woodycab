@@ -37,7 +37,7 @@ const styles = {
 
 	filter: css`
 		padding: 0.5rem 0.8rem;
-		font-size: 1.4rem;
+		font-size: 1.1rem;
 
 		/* ${({ active }) =>
 			active &&
@@ -49,6 +49,10 @@ const styles = {
 		&:is(:hover, .active) {
 			background-color: var(--color-brand-700);
 			color: var(--color-brand-50);
+		}
+
+		@media (min-width: 1024px) {
+			font-size: 1.4rem;
 		}
 	`,
 

@@ -14,9 +14,18 @@ import { useEffect } from "react";
 
 const StyledDashboardLayout = styled.div`
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: auto 33.8rem auto;
+	grid-template-columns: 1fr;
 	gap: 2rem;
+
+	@media (min-width: 768px) {
+		grid-template-columns: repeat(2, 1fr);
+		/* grid-template-rows: auto 33.8rem auto; */
+	}
+
+	@media (min-width: 1024px) {
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto 33.8rem auto;
+	}
 `;
 
 function DashboardLayout() {
