@@ -14,7 +14,15 @@ const StyledStaySummary = styled.div`
 	${CommonBox}
 	padding: 2.2rem;
 
-	@media (min-width: 1024px) {
+	@media (min-width: 465px) {
+		grid-column: span 2;
+	}
+	/* 
+	@media (min-width: 930px) {
+		grid-column: 2/3;
+	} */
+
+	@media (min-width: 1220px) {
 		grid-column: span 2;
 	}
 

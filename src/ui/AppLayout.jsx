@@ -15,6 +15,7 @@ const StyledAppLayout = styled.div`
 	display: flex;
 	flex-direction: column;
 
+	/* @media (min-width: 1190px) { */
 	@media (min-width: 1024px) {
 		display: grid;
 		grid-template-columns: 26rem 1fr;
@@ -28,6 +29,9 @@ const Main = styled.main`
 	padding: 5rem 2rem;
 	margin: 0 auto;
 	overflow-y: auto;
+
+	width: 100%;
+	max-width: 120rem;
 `;
 
 function AppLayout() {

@@ -37,6 +37,7 @@ body {
   margin: 0;
   line-height: inherit; /* 2 */
   position: relative;
+  background-color: var(--color-grey-50);
 }
 
  

@@ -37,7 +37,7 @@ const styles = {
 
 	filter: css`
 		padding: 0.5rem 0.8rem;
-		font-size: 1.1rem;
+		font-size: 1.4rem;
 
 		/* ${({ active }) =>
 			active &&
@@ -50,10 +50,10 @@ const styles = {
 			background-color: var(--color-brand-700);
 			color: var(--color-brand-50);
 		}
-
-		@media (min-width: 1024px) {
+		/* 
+		@media (min-width: 768px) {
 			font-size: 1.4rem;
-		}
+		} */
 	`,
 
 	pagination: css`

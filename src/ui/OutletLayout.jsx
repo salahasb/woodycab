@@ -3,18 +3,36 @@ import styled, { css } from "styled-components";
 
 const StyledOutletLayout = styled.div`
 	width: 100%;
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 1fr;
+	/* justify-content: space-between;
 	align-items: center;
-	flex-wrap: wrap;
+	flex-wrap: wrap; */
 	row-gap: 3rem;
+	column-gap: 5rem;
+
+	@media (min-width: 650px) {
+		grid-template-columns: auto auto;
+	}
 `;
 
 const Box = styled.div`
+	${({ $center }) =>
+		$center &&
+		css`
+			justify-self: center;
+
+			@media (min-width: 650px) {
+				justify-self: right;
+			}
+		`}
+
 	${({ $full }) =>
 		$full &&
 		css`
-			flex: 0 0 100%;
+			@media (min-width: 650px) {
+				grid-column: span 2;
+			}
 		`}
 `;
 

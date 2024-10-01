@@ -14,12 +14,16 @@ const StyledSideBar = styled.aside`
 
 	width: 100%;
 	max-width: 34rem;
-	position: absolute;
+	position: fixed;
 	z-index: 1;
-	height: 100%;
+	height: 100dvh;
+	top: 0;
+	bottom: 0;
 	transition: transform 0.3s;
+
 	transform: translateX(-100%);
 
+	/* @media (min-width: 1190px) { */
 	@media (min-width: 1024px) {
 		grid-row: 1/-1;
 		width: auto;
