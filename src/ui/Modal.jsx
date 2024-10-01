@@ -1,93 +1,3 @@
-// import styled from "styled-components";
-// import { IoCloseOutline } from "react-icons/io5";
-
-// import CommonButton from "./IconButton.styled";
-// import { createPortal } from "react-dom";
-// import { cloneElement, createContext, useContext, useState } from "react";
-
-// const Overlay = styled.div`
-// 	display: flex;
-// 	justify-content: center;
-// 	align-items: center;
-// 	backdrop-filter: blur(5px);
-// 	/* background-color: #0000004c; */
-// 	position: fixed;
-// 	top: 0;
-// 	left: 0;
-// 	width: 100%;
-// 	height: 100vh;
-// 	z-index: 2;
-// `;
-
-// const StyledWindow = styled.div`
-// 	background-color: var(--color-grey-0);
-// 	padding: 3.2rem 4rem;
-// 	box-shadow: var(--shadow-lg);
-// 	position: relative;
-// 	width: fit-content;
-// `;
-
-// const CloseButton = styled(CommonButton)`
-// 	position: absolute;
-// 	top: 1rem;
-// 	right: 1rem;
-// 	padding: 0;
-
-// 	& svg {
-// 		width: 3rem;
-// 		height: 3rem;
-// 		color: var(--color-grey-500);
-// 	}
-// `;
-
-// const ModalContext = createContext();
-
-// function Modal({ children }) {
-// 	const [currentName, setCurrentName] = useState("");
-// 	const [currentCabin, setCurrentCabin] = useState("");
-
-// 	return (
-// 		<ModalContext.Provider
-// 			value={{ currentName, setCurrentName, currentCabin, setCurrentCabin }}
-// 		>
-// 			{children}
-// 		</ModalContext.Provider>
-// 	);
-// }
-
-// function Open({ children, passedName, id }) {
-// 	const { setCurrentName, setCurrentCabin } = useContext(ModalContext);
-
-// 	return cloneElement(children, {
-// 		onClick: () => {
-// 			setCurrentName(passedName);
-// 			setCurrentCabin(id);
-// 		},
-// 	});
-// }
-
-// function Window({ children, passedName, id }) {
-// 	const { currentName, setCurrentName, currentCabin } =
-// 		useContext(ModalContext);
-
-// 	if (currentName !== passedName) return null;
-
-// 	return createPortal(
-// 		<Overlay>
-// 			<StyledWindow>
-// 				<CloseButton onClick={() => setCurrentName("")}>
-// 					<IoCloseOutline />
-// 				</CloseButton>
-// 				{children}
-// 			</StyledWindow>
-// 		</Overlay>,
-// 		document.body
-// 	);
-// }
-
-// Modal.Window = Window;
-// Modal.Open = Open;
-
 // export default Modal;
 import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
@@ -95,6 +5,7 @@ import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
 import IconButton from "./IconButton.styled";
 import useOutsideClick from "../hooks/useOutsideClick";
+import CloseButton from "./CloseButton.styled";
 // import { useOutsideClick } from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
@@ -120,19 +31,6 @@ const Overlay = styled.div`
 	backdrop-filter: blur(4px);
 	z-index: 1;
 	transition: all 0.5s;
-`;
-
-const CloseButton = styled(IconButton)`
-	position: absolute;
-	top: 1rem;
-	right: 1rem;
-	padding: 0;
-
-	& svg {
-		width: 3rem;
-		height: 3rem;
-		color: var(--color-grey-500);
-	}
 `;
 
 const ModalContext = createContext();

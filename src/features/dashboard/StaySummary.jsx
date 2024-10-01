@@ -17,10 +17,6 @@ const StyledStaySummary = styled.div`
 	@media (min-width: 465px) {
 		grid-column: span 2;
 	}
-	/* 
-	@media (min-width: 930px) {
-		grid-column: 2/3;
-	} */
 
 	@media (min-width: 1220px) {
 		grid-column: span 2;
@@ -39,7 +35,12 @@ const StyledStaySummary = styled.div`
 		gap: 6rem;
 
 		/* Pie chart */
-		& > div {
+		& .recharts-wrapper {
+			& .recharts-surface {
+			}
+
+			& .recharts-legend-wrapper {
+			}
 		}
 	}
 `;
@@ -134,7 +135,6 @@ function StaySummary({ stays }) {
 	//
 	const chartData = prepareData(startDataLight, stays);
 
-	console.log(chartData);
 	return (
 		<StyledStaySummary>
 			<h2>Stay duration summary</h2>
@@ -160,7 +160,7 @@ function StaySummary({ stays }) {
 					<Tooltip />
 					<Legend
 						verticalAlign="middle"
-						align="right"
+						align="center"
 						width="30%"
 						layout="vertical"
 						iconSize={15}

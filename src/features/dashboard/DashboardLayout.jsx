@@ -19,10 +19,8 @@ const StyledDashboardLayout = styled.div`
 
 	@media (min-width: 482px) {
 		grid-template-columns: repeat(2, 1fr);
-		/* grid-template-rows: auto 33.8rem auto; */
 	}
 
-	/* @media (min-width: 1220px) { */
 	@media (min-width: 1220px) {
 		grid-template-columns: repeat(4, 1fr);
 		grid-template-rows: auto 33.8rem auto;

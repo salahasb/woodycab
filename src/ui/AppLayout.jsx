@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import Modal from "./Modal";
 import ToasterList from "./Toaster";
 import useUser from "../features/auth/useUser";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const StyledAppLayout = styled.div`
 	/* display: grid;
@@ -32,14 +32,25 @@ const Main = styled.main`
 
 	width: 100%;
 	max-width: 120rem;
+
+	@media (min-width: 600px) {
+		padding: 5rem 6rem;
+	}
+
+	@media (min-width: 780px) {
+		padding: 5rem 8rem;
+	}
 `;
 
 function AppLayout() {
+	// Wasting rerenders don't impact the performance here, that's why simple state has been used here instead of using more performant approaches
+	const [showMenu, setShowMenu] = useState(false);
+
 	return (
 		<Modal>
 			<StyledAppLayout>
-				<Header />
-				<SideBar />
+				<Header setShowMenu={setShowMenu} />
+				<SideBar showMenu={showMenu} setShowMenu={setShowMenu} />
 				<Main>
 					<Outlet />
 				</Main>
