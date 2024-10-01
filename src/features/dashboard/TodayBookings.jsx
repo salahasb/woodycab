@@ -7,6 +7,7 @@ import { MainSpinner } from "../../ui/LoadingSpinners";
 const StyledTodayBookings = styled.div`
 	${CommonBox}
 	padding: 2.2rem;
+	overflow: hidden;
 
 	/* temp */
 	/* width: 2rem; */
@@ -30,21 +31,27 @@ const StyledTodayBookings = styled.div`
 	}
 
 	& > ul {
-		overflow-y: auto;
-		max-height: 80%;
+		max-height: 24rem;
+		width: 100%;
+		max-width: 50rem;
+		overflow: auto;
+		margin: 0 auto;
+
+		&::-webkit-scrollbar {
+			width: 0.6rem;
+			height: 0.6rem;
+		}
 
 		& li {
 			display: grid;
-			grid-template-columns: 0.5fr 1fr 1fr auto;
+			grid-template-columns: 10rem 20rem 6rem auto;
 			gap: 1.4rem;
 			align-items: center;
 			padding: 1rem 0;
 			font-weight: 500;
 			border-bottom: 1px solid var(--color-grey-200);
-
-			/* all li except the last &:not(:last-child) {
-				border-bottom: 1px solid var(--color-grey-200);
-			} */
+			/* margin: 0 auto; */
+			width: fit-content;
 
 			/* Guest name */
 			& > div:nth-child(2) {

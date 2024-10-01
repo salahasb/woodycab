@@ -31,7 +31,7 @@ const Main = styled.main`
 	overflow-y: auto;
 
 	width: 100%;
-	max-width: 120rem;
+	max-width: 140rem;
 
 	@media (min-width: 600px) {
 		padding: 5rem 6rem;
