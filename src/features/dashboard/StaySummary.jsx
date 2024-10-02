@@ -9,41 +9,7 @@ import {
 	Tooltip,
 } from "recharts";
 import { prepareData } from "./helpers";
-
-const StyledStaySummary = styled.div`
-	${CommonBox}
-	padding: 2.2rem;
-
-	@media (min-width: 465px) {
-		grid-column: span 2;
-	}
-
-	@media (min-width: 1220px) {
-		grid-column: span 2;
-	}
-
-	& > h2 {
-		font-size: 2.2rem;
-		font-weight: 600;
-		margin-bottom: 2rem;
-	}
-
-	& > div:first-of-type {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 6rem;
-
-		/* Pie chart */
-		& .recharts-wrapper {
-			& .recharts-surface {
-			}
-
-			& .recharts-legend-wrapper {
-			}
-		}
-	}
-`;
+import { useEffect, useState } from "react";
 
 const startDataLight = [
 	{
@@ -131,6 +97,107 @@ const startDataDark = [
 	},
 ];
 
+// const [legendAlign, setLegendAlign] = useState("center");
+// const [legendVerticalAlign, setLegendVerticalAlign] = useState("bottom");
+// const [containerWidth, setContainerWidth] = useState("80%");
+
+// useEffect(() => {
+// 	function handleOnResize(e) {
+// 		const screenWidth = window.innerWidth;
+
+// 		console.log(screenWidth);
+
+// 		if (screenWidth > 440) {
+// 			setLegendAlign("right");
+// 			setLegendVerticalAlign("middle");
+// 			setContainerWidth(400);
+// 		} else {
+// 			setLegendAlign("center");
+// 			setLegendVerticalAlign("bottom");
+// 			setContainerWidth("70%");
+// 		}
+// 	}
+
+// 	window.addEventListener("resize", handleOnResize);
+
+// 	return () => {
+// 		window.removeEventListener("resize", handleOnResize);
+// 	};
+// }, []);
+
+const StyledStaySummary = styled.div`
+	${CommonBox}
+	padding: 2.2rem;
+
+	@media (min-width: 465px) {
+		grid-column: span 2;
+	}
+
+	@media (min-width: 1220px) {
+		grid-column: span 2;
+	}
+
+	& > h2 {
+		font-size: 2.2rem;
+		font-weight: 600;
+		margin-bottom: 2rem;
+	}
+
+	/* PieCharts */
+	& > .recharts-wrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 3rem;
+		margin: 0rem auto;
+		padding: 2rem 0;
+
+		width: 100% !important;
+		height: fit-content !important;
+		max-height: initial !important;
+		max-width: initial !important;
+
+		@media (min-width: 440px) {
+			flex-direction: row;
+		}
+
+		/* Pie svg */
+		& > .recharts-surface {
+			height: 220px !important;
+			width: 220px !important;
+		}
+
+		/* Legend */
+		& > .recharts-legend-wrapper {
+			position: initial !important;
+			flex-shrink: 0;
+		}
+	}
+`;
+
+const StyledList = styled.ul`
+	@media (min-width: 450px) {
+	}
+`;
+
+const renderLegend = (props) => {
+	const { payload } = props;
+
+	return (
+		<StyledList>
+			{payload.map((entry, index) => {
+				console.log(entry);
+				return (
+					<li key={`item-${index}`} color={entry.color}>
+						{entry.value}
+					</li>
+				);
+			})}
+		</StyledList>
+	);
+};
+
 function StaySummary({ stays }) {
 	//
 	const chartData = prepareData(startDataLight, stays);
@@ -140,34 +207,36 @@ function StaySummary({ stays }) {
 			<h2>Stay duration summary</h2>
 
 			{/* <div> */}
-			<ResponsiveContainer width={"100%"} height="82%">
-				<PieChart width={220} height={220}>
-					<Pie
-						data={chartData}
-						dataKey="value"
-						nameKey="duration"
-						cx="50%"
-						cy="50%"
-						innerRadius={82}
-						outerRadius={110}
-						fill="#82ca9d"
-						paddingAngle={2}
-					>
-						{chartData.map(({ color, duration }) => (
-							<Cell key={duration} fill={color} stroke={color} />
-						))}
-					</Pie>
-					<Tooltip />
-					<Legend
-						verticalAlign="middle"
-						align="center"
-						width="30%"
-						layout="vertical"
-						iconSize={15}
-						iconType="circle"
-					/>
-				</PieChart>
-			</ResponsiveContainer>
+			{/* <ResponsiveContainer width={"100%"}> */}
+			{/* <PieChart width={220} height={220}> */}
+			<PieChart width={220} height={220}>
+				<Pie
+					data={chartData}
+					dataKey="value"
+					nameKey="duration"
+					cx="50%"
+					cy="92%"
+					innerRadius={83}
+					outerRadius={109}
+					fill="#82ca9d"
+					paddingAngle={2}
+				>
+					{chartData.map(({ color, duration }) => (
+						<Cell key={duration} fill={color} stroke={color} />
+					))}
+				</Pie>
+				<Tooltip />
+				<Legend
+					verticalAlign={"bottom"}
+					align={"center"}
+					layout="vertical"
+					iconSize={7}
+					iconType="circle"
+					// margin={{ left: 500 }}
+					// content={renderLegend}
+				/>
+			</PieChart>
+			{/* </ResponsiveContainer> */}
 			{/* </div> */}
 		</StyledStaySummary>
 	);

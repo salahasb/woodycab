@@ -18,8 +18,8 @@ const GlobalStyles = createGlobalStyle`
 }
 
 ::-webkit-scrollbar {
-  width: 1rem;
-  height: 1rem;
+  width: 0.8rem;
+  height: 0.8rem;
 }
  
 ::-webkit-scrollbar-track {
@@ -27,17 +27,11 @@ const GlobalStyles = createGlobalStyle`
   border-radius: 20px;       
   
 }
-
-::-webkit-scrollbar-track {
-  background-color: var(--color-grey-100);    
-  border-radius: 20px;       
-  
-}
-
+ 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-brand-900) ;
+  background-color: var(--color-grey-50) ;
   border-radius: 20px;       
-  border: 1px solid var(--color-grey-200);
+  border: 1px solid var(--color-grey-100);
 }
  
 html {
