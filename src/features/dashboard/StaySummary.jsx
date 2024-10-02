@@ -1,15 +1,7 @@
 import styled from "styled-components";
 import CommonBox from "../../ui/Box.styled";
-import {
-	Cell,
-	Legend,
-	Pie,
-	PieChart,
-	ResponsiveContainer,
-	Tooltip,
-} from "recharts";
+import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
 import { prepareData } from "./helpers";
-import { useEffect, useState } from "react";
 
 const startDataLight = [
 	{
@@ -97,34 +89,6 @@ const startDataDark = [
 	},
 ];
 
-// const [legendAlign, setLegendAlign] = useState("center");
-// const [legendVerticalAlign, setLegendVerticalAlign] = useState("bottom");
-// const [containerWidth, setContainerWidth] = useState("80%");
-
-// useEffect(() => {
-// 	function handleOnResize(e) {
-// 		const screenWidth = window.innerWidth;
-
-// 		console.log(screenWidth);
-
-// 		if (screenWidth > 440) {
-// 			setLegendAlign("right");
-// 			setLegendVerticalAlign("middle");
-// 			setContainerWidth(400);
-// 		} else {
-// 			setLegendAlign("center");
-// 			setLegendVerticalAlign("bottom");
-// 			setContainerWidth("70%");
-// 		}
-// 	}
-
-// 	window.addEventListener("resize", handleOnResize);
-
-// 	return () => {
-// 		window.removeEventListener("resize", handleOnResize);
-// 	};
-// }, []);
-
 const StyledStaySummary = styled.div`
 	${CommonBox}
 	padding: 2.2rem;
@@ -133,7 +97,11 @@ const StyledStaySummary = styled.div`
 		grid-column: span 2;
 	}
 
-	@media (min-width: 1220px) {
+	@media (min-width: 850px) {
+		grid-column: span 1;
+	}
+
+	@media (min-width: 1024px) {
 		grid-column: span 2;
 	}
 
@@ -146,8 +114,7 @@ const StyledStaySummary = styled.div`
 	/* PieCharts */
 	& > .recharts-wrapper {
 		display: flex;
-		flex-direction: column;
-		/* grid-template-columns: auto; */
+		flex-direction: row;
 
 		justify-content: center;
 		align-items: center;
@@ -162,15 +129,15 @@ const StyledStaySummary = styled.div`
 
 		@media (min-width: 440px) {
 			flex-direction: row;
-			/* grid-template-columns: auto auto; */
+		}
+
+		@media (min-width: 1024px) {
+			padding: 2rem;
 		}
 
 		/* Pie svg */
 		& > .recharts-surface {
-			height: 220px !important;
-			width: 220px !important;
-			/* width: 100% !important; */
-			/* width: fit-content !important; */
+			max-width: 220px;
 
 			& .recharts-sector:focus {
 				outline: 0;
@@ -184,28 +151,6 @@ const StyledStaySummary = styled.div`
 		}
 	}
 `;
-
-const StyledList = styled.ul`
-	@media (min-width: 450px) {
-	}
-`;
-
-const renderLegend = (props) => {
-	const { payload } = props;
-
-	return (
-		<StyledList>
-			{payload.map((entry, index) => {
-				console.log(entry);
-				return (
-					<li key={`item-${index}`} color={entry.color}>
-						{entry.value}
-					</li>
-				);
-			})}
-		</StyledList>
-	);
-};
 
 function StaySummary({ stays }) {
 	//
@@ -222,7 +167,7 @@ function StaySummary({ stays }) {
 					nameKey="duration"
 					cx="50%"
 					cy="105"
-					innerRadius={83}
+					innerRadius={86}
 					outerRadius={109}
 					fill="#82ca9d"
 					paddingAngle={2}

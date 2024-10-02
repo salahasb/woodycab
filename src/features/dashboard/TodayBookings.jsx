@@ -9,18 +9,15 @@ const StyledTodayBookings = styled.div`
 	padding: 2.2rem;
 	overflow: hidden;
 
-	/* temp */
-	/* width: 2rem; */
-
 	@media (min-width: 465px) {
 		grid-column: span 2;
 	}
 
-	@media (min-width: 1024px) {
-		grid-column: span 2;
+	@media (min-width: 850px) {
+		grid-column: span 1;
 	}
 
-	@media (min-width: 1220px) {
+	@media (min-width: 1024px) {
 		grid-column: span 2;
 	}
 

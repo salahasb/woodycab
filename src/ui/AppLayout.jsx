@@ -8,14 +8,9 @@ import useUser from "../features/auth/useUser";
 import { useEffect, useState } from "react";
 
 const StyledAppLayout = styled.div`
-	/* display: grid;
-	grid-template-columns: 26rem 1fr;
-	grid-template-rows: auto 1fr;
-	height: 100vh; */
 	display: flex;
 	flex-direction: column;
 
-	/* @media (min-width: 1190px) { */
 	@media (min-width: 1024px) {
 		display: grid;
 		grid-template-columns: 26rem 1fr;

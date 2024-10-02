@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import Stat from "./Stat";
 import useRecentBookings from "./useRecentBookings";
-import { formatCurrency } from "../../utils/helpers";
 import { MainSpinner } from "../../ui/LoadingSpinners";
 import { useSearchParams } from "react-router-dom";
 import { formatISO, subDays } from "date-fns";
@@ -10,7 +8,6 @@ import useCabins from "../cabins/useCabins";
 import Stats from "./Stats";
 import TodayBookings from "./TodayBookings";
 import StaySummary from "./StaySummary";
-import { useEffect } from "react";
 
 const StyledDashboardLayout = styled.div`
 	display: grid;
