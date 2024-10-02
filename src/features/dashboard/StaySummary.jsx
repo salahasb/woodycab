@@ -147,6 +147,8 @@ const StyledStaySummary = styled.div`
 	& > .recharts-wrapper {
 		display: flex;
 		flex-direction: column;
+		/* grid-template-columns: auto; */
+
 		justify-content: center;
 		align-items: center;
 		gap: 3rem;
@@ -160,12 +162,19 @@ const StyledStaySummary = styled.div`
 
 		@media (min-width: 440px) {
 			flex-direction: row;
+			/* grid-template-columns: auto auto; */
 		}
 
 		/* Pie svg */
 		& > .recharts-surface {
 			height: 220px !important;
 			width: 220px !important;
+			/* width: 100% !important; */
+			/* width: fit-content !important; */
+
+			& .recharts-sector:focus {
+				outline: 0;
+			}
 		}
 
 		/* Legend */
@@ -206,16 +215,13 @@ function StaySummary({ stays }) {
 		<StyledStaySummary>
 			<h2>Stay duration summary</h2>
 
-			{/* <div> */}
-			{/* <ResponsiveContainer width={"100%"}> */}
-			{/* <PieChart width={220} height={220}> */}
 			<PieChart width={220} height={220}>
 				<Pie
 					data={chartData}
 					dataKey="value"
 					nameKey="duration"
 					cx="50%"
-					cy="92%"
+					cy="105"
 					innerRadius={83}
 					outerRadius={109}
 					fill="#82ca9d"
@@ -225,19 +231,10 @@ function StaySummary({ stays }) {
 						<Cell key={duration} fill={color} stroke={color} />
 					))}
 				</Pie>
+
 				<Tooltip />
-				<Legend
-					verticalAlign={"bottom"}
-					align={"center"}
-					layout="vertical"
-					iconSize={7}
-					iconType="circle"
-					// margin={{ left: 500 }}
-					// content={renderLegend}
-				/>
+				<Legend layout="vertical" iconSize={7} iconType="circle" />
 			</PieChart>
-			{/* </ResponsiveContainer> */}
-			{/* </div> */}
 		</StyledStaySummary>
 	);
 }

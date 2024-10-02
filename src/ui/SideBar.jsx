@@ -49,7 +49,7 @@ function SideBar({ showMenu, setShowMenu }) {
 
 			<Logo />
 
-			<MainNav />
+			<MainNav setShowMenu={setShowMenu} />
 
 			{process.env.NODE_ENV === "development" && <Uploader />}
 		</StyledSideBar>
