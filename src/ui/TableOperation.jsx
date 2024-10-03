@@ -7,6 +7,9 @@ const StyledTableOperation = styled.div`
 	display: flex;
 	gap: 2rem;
 	align-items: center;
+
+	/* temp */
+	/* flex-direction: column; */
 `;
 
 function TableOperation({ resource }) {

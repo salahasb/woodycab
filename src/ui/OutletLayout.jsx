@@ -9,31 +9,36 @@ const StyledOutletLayout = styled.div`
 	align-items: center;
 	flex-wrap: wrap; */
 	row-gap: 3rem;
-	column-gap: 5rem;
+	column-gap: 2rem;
 
-	@media (min-width: 650px) {
-		grid-template-columns: auto auto;
+	@media (min-width: 700px) {
+		grid-template-columns: auto 1fr;
 	}
 `;
 
 const Box = styled.div`
-	${({ $center }) =>
-		$center &&
-		css`
-			justify-self: center;
+	&:nth-of-type(2) {
+		justify-self: center;
 
-			@media (min-width: 650px) {
-				justify-self: right;
-			}
-		`}
+		@media (min-width: 700px) {
+			justify-self: right;
+		}
+	}
 
 	${({ $full }) =>
 		$full &&
 		css`
-			@media (min-width: 650px) {
+			@media (min-width: 700px) {
 				grid-column: span 2;
 			}
 		`}
+
+	${({ $resource }) =>
+		($resource =
+			"table" &&
+			css`
+				overflow: auto;
+			`)}
 `;
 
 function OutletLayout({ children, heading = "untitled" }) {

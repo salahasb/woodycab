@@ -5,11 +5,11 @@ import TableOperation from "../ui/TableOperation";
 function Bookings() {
 	return (
 		<OutletLayout heading="All bookings">
-			<OutletLayout.Box $center>
+			<OutletLayout.Box>
 				<TableOperation resource="bookings" />
 			</OutletLayout.Box>
 
-			<OutletLayout.Box $full>
+			<OutletLayout.Box $full $resource="table">
 				<BookingTable />
 			</OutletLayout.Box>
 		</OutletLayout>

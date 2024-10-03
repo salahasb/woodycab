@@ -8,9 +8,12 @@ const StyledTable = styled.div`
 	flex-direction: column;
 	border-radius: var(--border-radius-tiny);
 	border: 1px solid var(--color-grey-200);
+	overflow: auto;
+	margin: 0 auto;
 `;
 
 const CommonRow = styled.div`
+	min-width: 90rem;
 	display: grid;
 	grid-template-columns: ${({ $columns }) => $columns};
 	gap: 2.4rem;
@@ -49,10 +52,22 @@ const Footer = styled.footer`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	flex-direction: column;
+	gap: 1rem;
+
 	padding: 1.2rem 1.5rem;
 	font-size: 1.4rem;
 	color: var(--color-grey-600);
 	font-weight: 500;
+	position: sticky;
+	right: 0;
+	left: 0;
+
+	flex-direction: column;
+
+	@media (min-width: 500px) {
+		flex-direction: row;
+	}
 
 	/* This will hide the footer when it contains no child elements. Possible thanks to the parent selector :has 🎉 */
 	&:not(:has(*)) {
@@ -66,6 +81,21 @@ const Footer = styled.footer`
 	& > div {
 		display: flex;
 		gap: 1rem;
+		width: 100%;
+		justify-content: space-between;
+
+		@media (min-width: 500px) {
+			justify-content: initial;
+			width: auto;
+		}
+	}
+
+	& > p {
+		display: none;
+
+		@media (min-width: 500px) {
+			display: block;
+		}
 	}
 `;
 

@@ -6,6 +6,14 @@ const Select = styled.select`
 	font-weight: 500;
 	padding: 1rem;
 	background-color: var(--color-grey-0);
+
+	/* temp */
+	display: none;
+
+	@media (min-width: 1295px) {
+		display: block;
+	}
+
 	&:focus {
 		outline: 2px solid var(--color-brand-600);
 	}
@@ -15,8 +23,6 @@ function SortBy({ sorts }) {
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const curSort = searchParams.get("sortBy") || "";
-
-	// console.log(currentSort);
 
 	function handleChange(e) {
 		searchParams.set("sortBy", e.target.value);
