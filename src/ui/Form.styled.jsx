@@ -1,13 +1,16 @@
 import styled, { css } from "styled-components";
 
 const Form = styled.form`
-	background-color: var(--color-grey-0);
-	/* padding: 4rem; */
+	margin: 0 auto;
 
 	${({ $for }) =>
 		$for === "regular" &&
 		css`
-			padding: 3rem 5rem;
+			padding: 3rem 3rem;
+
+			@media (min-width: 400px) {
+				padding: 3rem 5rem;
+			}
 		`}
 
 	${({ $for }) =>
@@ -18,33 +21,72 @@ const Form = styled.form`
 `;
 
 const Row = styled.div`
-	padding: 1.5rem 0;
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr;
 	align-items: center;
-	gap: 2.5rem;
+	margin: 0 auto;
+	max-width: 40rem;
+	column-gap: 2rem;
+
+	@media (min-width: 1400px) {
+		max-width: initial;
+		margin-bottom: 2rem;
+		grid-template-columns: 0.6fr 1fr 1fr;
+	}
 
 	&:has(button) {
-		gap: 2rem;
-		justify-content: flex-end;
-		border: 0;
+		display: flex;
+
+		margin: 0 auto;
+		width: fit-content;
+
+		& > button[type="reset"] {
+			display: none;
+		}
+
+		@media (min-width: 768px) {
+			margin: 0;
+			width: fit-content;
+			margin-left: auto;
+
+			& > button[type="reset"] {
+				display: block;
+			}
+		}
 	}
 
 	&:not(:last-of-type) {
-		border-bottom: var(--border-main);
+		/* border-bottom: var(--border-main); */
 	}
 
 	& > input,
 	& > textarea {
-		width: 22.8rem;
+		width: 100%;
+		margin-bottom: 0.5rem;
+		/* max-width: 38rem; */
+
+		@media (min-width: 500px) {
+			/* width: 22.8rem; */
+		}
 	}
 
 	& > label {
-		width: 24.2rem;
 		flex-shrink: 0;
+		margin-bottom: 0.5rem;
 	}
 
 	& > p {
 		color: var(--color-red-700);
+		font-size: 1.2rem;
+		height: 3.6rem;
+		line-height: 1;
+
+		@media (min-width: 1400px) {
+			font-size: 1.4rem;
+			font-weight: 400;
+			height: auto;
+			line-height: 1.5;
+		}
 	}
 `;
 

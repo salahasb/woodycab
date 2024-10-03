@@ -5,7 +5,7 @@ import TableOperation from "../ui/TableOperation";
 function Cabins() {
 	return (
 		<OutletLayout heading="All cabins">
-			<OutletLayout.Box>
+			<OutletLayout.Box $operation>
 				<TableOperation resource="cabins" />
 			</OutletLayout.Box>
 

@@ -14,13 +14,15 @@ const StyledOutletLayout = styled.div`
 `;
 
 const Box = styled.div`
-	&:nth-of-type(2) {
-		justify-self: center;
+	${({ $operation }) =>
+		$operation &&
+		css`
+			justify-self: center;
 
-		@media (min-width: 700px) {
-			justify-self: right;
-		}
-	}
+			@media (min-width: 700px) {
+				justify-self: right;
+			}
+		`}
 
 	${({ $full }) =>
 		$full &&
@@ -34,7 +36,6 @@ const Box = styled.div`
 		$resource === "table" &&
 		css`
 			overflow-y: hidden;
-			/* overflow-y: visible; */
 		`}
 `;
 
@@ -44,7 +45,6 @@ function OutletLayout({ children, heading = "untitled" }) {
 			<Box>
 				<Heading>{heading}</Heading>
 			</Box>
-			{/* {!children[0] && <Box />} */}
 			{children}
 		</StyledOutletLayout>
 	);

@@ -6,7 +6,7 @@ import { OPERATIONS } from "../utils/constants";
 function Dashboard() {
 	return (
 		<OutletLayout heading="Dashboard">
-			<OutletLayout.Box $center>
+			<OutletLayout.Box $operation>
 				<Filter filters={OPERATIONS.statistics.filters} resource="statistics" />
 			</OutletLayout.Box>
 

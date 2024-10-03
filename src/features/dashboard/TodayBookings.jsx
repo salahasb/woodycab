@@ -90,6 +90,7 @@ function TodayBookings() {
 	return (
 		<StyledTodayBookings>
 			<h2>Today</h2>
+
 			{isLoading ? (
 				<MainSpinner $color={"transparent"} />
 			) : todayBookings.length === 0 ? (
