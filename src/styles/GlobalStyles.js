@@ -23,13 +23,13 @@ const GlobalStyles = createGlobalStyle`
 }
  
 ::-webkit-scrollbar-track {
-  background-color: var(--color-grey-100);    
   border-radius: 20px;       
+  background-color: var(--color-grey-50) ;
   
 }
- 
+
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-grey-50) ;
+  background-color: var(--color-grey-100);    
   border-radius: 20px;       
   border: 1px solid var(--color-grey-100);
 }
@@ -48,7 +48,7 @@ html {
   
 body {
   scrollbar-width: thin;          
-  scrollbar-color: var(--color-grey-200);
+  scrollbar-color: var(--color-grey-100);
 
   font-family: "Poppins", sans-serif;
   color: var(--color-grey-700);

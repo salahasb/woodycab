@@ -17,7 +17,7 @@ const ToggleIcon = styled(IconButton)`
 
 const StyledOptions = styled.div`
 	position: relative;
-	justify-self: flex-end;
+	justify-self: center;
 `;
 
 const StyledList = styled.ul`

@@ -9,7 +9,7 @@ function Cabins() {
 				<TableOperation resource="cabins" />
 			</OutletLayout.Box>
 
-			<OutletLayout.Box $full>
+			<OutletLayout.Box $full $resource="table">
 				<CabinTableBox />
 			</OutletLayout.Box>
 		</OutletLayout>

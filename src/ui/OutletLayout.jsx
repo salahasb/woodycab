@@ -5,9 +5,6 @@ const StyledOutletLayout = styled.div`
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr;
-	/* justify-content: space-between;
-	align-items: center;
-	flex-wrap: wrap; */
 	row-gap: 3rem;
 	column-gap: 2rem;
 
@@ -34,11 +31,11 @@ const Box = styled.div`
 		`}
 
 	${({ $resource }) =>
-		($resource =
-			"table" &&
-			css`
-				overflow: auto;
-			`)}
+		$resource === "table" &&
+		css`
+			overflow: hidden;
+			/* overflow-y: visible; */
+		`}
 `;
 
 function OutletLayout({ children, heading = "untitled" }) {

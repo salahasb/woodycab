@@ -17,15 +17,18 @@ const StyledAppLayout = styled.div`
 		grid-template-rows: auto 1fr;
 		height: 100vh;
 	}
+
+	& > div:has(main) {
+		width: 100%;
+		overflow-y: auto;
+	}
 `;
 
 const Main = styled.main`
 	background-color: var(--color-grey-50);
 	padding: 5rem 2rem;
 	margin: 0 auto;
-	overflow-y: auto;
 
-	width: 100%;
 	max-width: 140rem;
 
 	@media (min-width: 600px) {
@@ -46,9 +49,11 @@ function AppLayout() {
 			<StyledAppLayout>
 				<Header setShowMenu={setShowMenu} />
 				<SideBar showMenu={showMenu} setShowMenu={setShowMenu} />
-				<Main>
-					<Outlet />
-				</Main>
+				<div>
+					<Main>
+						<Outlet />
+					</Main>
+				</div>
 			</StyledAppLayout>
 		</Modal>
 	);

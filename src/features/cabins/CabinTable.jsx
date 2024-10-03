@@ -31,7 +31,7 @@ function CabinTable() {
 
 	return (
 		<Options>
-			<Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
+			<Table columns="0.8fr 1fr 1.6fr 1fr 1fr 0.8fr">
 				<Table.Header>
 					<div></div>
 					<div>Cabin</div>
@@ -42,14 +42,9 @@ function CabinTable() {
 				</Table.Header>
 
 				<Table.Body
-					// data={cabins}
-					// data={filteredCabins}
 					data={sortedCabins}
 					render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />}
 				/>
-
-				{/* {cabins.length &&
-					cabins.map((cabin) => <CabinRow cabin={cabin} key={cabin.id} />)} */}
 			</Table>
 		</Options>
 	);

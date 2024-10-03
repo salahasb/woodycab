@@ -8,7 +8,7 @@ const StyledTable = styled.div`
 	flex-direction: column;
 	border-radius: var(--border-radius-tiny);
 	border: 1px solid var(--color-grey-200);
-	overflow: auto;
+	overflow-x: auto;
 	margin: 0 auto;
 `;
 
