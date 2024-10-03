@@ -3,19 +3,17 @@ import Header from "./Header";
 import SideBar from "./SideBar";
 import { Outlet } from "react-router-dom";
 import Modal from "./Modal";
-import ToasterList from "./Toaster";
-import useUser from "../features/auth/useUser";
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 
 const StyledAppLayout = styled.div`
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-columns: 1fr;
+	height: 100vh;
+	grid-template-rows: auto 1fr;
 
 	@media (min-width: 1024px) {
-		display: grid;
 		grid-template-columns: 26rem 1fr;
-		grid-template-rows: auto 1fr;
-		height: 100vh;
 	}
 
 	& > div:has(main) {

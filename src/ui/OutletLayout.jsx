@@ -33,7 +33,7 @@ const Box = styled.div`
 	${({ $resource }) =>
 		$resource === "table" &&
 		css`
-			overflow: hidden;
+			overflow-y: hidden;
 			/* overflow-y: visible; */
 		`}
 `;
