@@ -28,7 +28,7 @@ const Row = styled.div`
 	max-width: 40rem;
 	column-gap: 2rem;
 
-	@media (min-width: 1400px) {
+	@media (min-width: 1500px) {
 		max-width: initial;
 		margin-bottom: 2rem;
 		grid-template-columns: 0.6fr 1fr 1fr;
@@ -36,22 +36,28 @@ const Row = styled.div`
 
 	&:has(button) {
 		display: flex;
+		justify-content: center;
+		margin-bottom: 0;
+		margin-top: 2rem;
 
+		/*
 		margin: 0 auto;
-		width: fit-content;
+		width: fit-content; */
 
 		& > button[type="reset"] {
 			display: none;
 		}
 
 		@media (min-width: 768px) {
-			margin: 0;
-			width: fit-content;
-			margin-left: auto;
+			justify-content: right;
 
 			& > button[type="reset"] {
 				display: block;
 			}
+		}
+
+		@media (min-width: 1500px) {
+			margin-top: 4rem;
 		}
 	}
 
@@ -65,23 +71,28 @@ const Row = styled.div`
 		margin-bottom: 0.5rem;
 		/* max-width: 38rem; */
 
-		@media (min-width: 500px) {
-			/* width: 22.8rem; */
+		@media (min-width: 1500px) {
+			margin-bottom: 0;
 		}
 	}
 
 	& > label {
+		font-size: 1.4rem;
+		font-weight: 500;
 		flex-shrink: 0;
 		margin-bottom: 0.5rem;
+		@media (min-width: 1500px) {
+			margin-bottom: 0rem;
+		}
 	}
 
 	& > p {
 		color: var(--color-red-700);
 		font-size: 1.2rem;
 		height: 3.6rem;
-		line-height: 1;
+		line-height: 1.4;
 
-		@media (min-width: 1400px) {
+		@media (min-width: 1500px) {
 			font-size: 1.4rem;
 			font-weight: 400;
 			height: auto;
