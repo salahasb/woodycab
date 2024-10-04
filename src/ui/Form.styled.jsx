@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 const Form = styled.form`
 	margin: 0 auto;
+	background-color: var(--color-grey-0);
 
 	${({ $for }) =>
 		$for === "regular" &&
@@ -28,10 +29,18 @@ const Row = styled.div`
 	max-width: 40rem;
 	column-gap: 2rem;
 
+	&:not(:has(> p)) {
+		margin-bottom: 3rem;
+	}
+
 	@media (min-width: 1500px) {
 		max-width: initial;
 		margin-bottom: 2rem;
 		grid-template-columns: 0.6fr 1fr 1fr;
+	}
+
+	&:nth-last-child(2):not(:has(> p)) {
+		margin-bottom: 5rem;
 	}
 
 	&:has(button) {
@@ -39,10 +48,6 @@ const Row = styled.div`
 		justify-content: center;
 		margin-bottom: 0;
 		margin-top: 2rem;
-
-		/*
-		margin: 0 auto;
-		width: fit-content; */
 
 		& > button[type="reset"] {
 			display: none;
@@ -69,7 +74,6 @@ const Row = styled.div`
 	& > textarea {
 		width: 100%;
 		margin-bottom: 0.5rem;
-		/* max-width: 38rem; */
 
 		@media (min-width: 1500px) {
 			margin-bottom: 0;
@@ -81,6 +85,7 @@ const Row = styled.div`
 		font-weight: 500;
 		flex-shrink: 0;
 		margin-bottom: 0.5rem;
+
 		@media (min-width: 1500px) {
 			margin-bottom: 0rem;
 		}
@@ -89,7 +94,7 @@ const Row = styled.div`
 	& > p {
 		color: var(--color-red-700);
 		font-size: 1.2rem;
-		height: 3.6rem;
+		height: 3rem;
 		line-height: 1.4;
 
 		@media (min-width: 1500px) {
@@ -97,6 +102,7 @@ const Row = styled.div`
 			font-weight: 400;
 			height: auto;
 			line-height: 1.5;
+			margin-left: 2rem;
 		}
 	}
 `;

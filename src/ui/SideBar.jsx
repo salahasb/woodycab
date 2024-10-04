@@ -15,7 +15,7 @@ const StyledSideBar = styled.aside`
 	padding: 6rem 2rem 2rem 2rem;
 
 	width: 100%;
-	max-width: 38.5rem;
+	max-width: 30rem;
 	position: fixed;
 	z-index: 1;
 	height: 100dvh;

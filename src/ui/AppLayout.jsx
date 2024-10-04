@@ -13,7 +13,7 @@ const StyledAppLayout = styled.div`
 	grid-template-rows: auto 1fr;
 
 	@media (min-width: 1024px) {
-		grid-template-columns: 26rem 1fr;
+		grid-template-columns: 30rem 1fr;
 	}
 
 	& > div:has(main) {
@@ -30,11 +30,11 @@ const Main = styled.main`
 	max-width: 140rem;
 
 	@media (min-width: 600px) {
-		padding: 5rem 6rem;
+		padding: 5rem 4rem;
 	}
 
-	@media (min-width: 780px) {
-		padding: 5rem 8rem;
+	@media (min-width: 1392px) {
+		padding: 5rem 6rem;
 	}
 `;
 
