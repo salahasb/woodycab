@@ -28,26 +28,26 @@ const Row = styled.div`
 	grid-template-columns: 1fr;
 	align-items: center;
 	column-gap: 2rem;
+	max-width: 40rem;
+	margin: 0 auto;
 
-	&:not(:has(> p)) {
-		margin-bottom: 3rem;
+	&:not(:has(> p), :last-child) {
+		padding-bottom: 2.4rem;
 	}
 
 	@media (min-width: 1500px) {
 		max-width: initial;
-		margin-bottom: 2rem;
+
+		padding-bottom: 2rem !important;
 		grid-template-columns: 0.6fr 1fr 1fr;
 	}
 
-	&:nth-last-child(2):not(:has(> p)) {
-		margin-bottom: 5rem;
-	}
-
-	&:has(button) {
+	&:last-of-type:has(button) {
 		display: flex;
 		justify-content: center;
-		margin-bottom: 0;
+		padding-bottom: 0 !important;
 		margin-top: 2rem;
+		/* margin-bottom: 0; */
 
 		& > button[type="reset"] {
 			display: none;
@@ -62,11 +62,12 @@ const Row = styled.div`
 		}
 
 		@media (min-width: 1500px) {
-			margin-top: 4rem;
+			margin-top: 2rem;
 		}
 	}
 
-	&:not(:last-of-type) {
+	&:last-of-type {
+		padding-bottom: 0 !important;
 		/* border-bottom: var(--border-main); */
 	}
 
@@ -94,8 +95,8 @@ const Row = styled.div`
 	& > p {
 		color: var(--color-red-700);
 		font-size: 1.2rem;
-		height: 3rem;
-		line-height: 1.4;
+		height: 2.4rem;
+		line-height: 1;
 
 		@media (min-width: 1500px) {
 			font-size: 1.4rem;
@@ -111,9 +112,11 @@ const RowVertical = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 0.8rem;
+	margin-bottom: 2.5rem;
 
-	&:has(:not(button)) {
-		margin-bottom: 2.5rem;
+	&:last-of-type:has(button) {
+		margin-bottom: 0;
+		padding-top: 2rem;
 	}
 `;
 
