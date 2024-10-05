@@ -9,7 +9,7 @@ import { useState } from "react";
 const StyledAppLayout = styled.div`
 	display: grid;
 	grid-template-columns: 1fr;
-	height: 100vh;
+	height: 100dvh;
 	grid-template-rows: auto 1fr;
 
 	@media (min-width: 1024px) {

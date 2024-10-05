@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import FileInput from "../../ui/FileInput";
 
 const StyledUpdateUserData = styled.div`
-	margin-bottom: 4rem;
+	margin-bottom: 2rem;
 `;
 
 function UpdateUserData() {

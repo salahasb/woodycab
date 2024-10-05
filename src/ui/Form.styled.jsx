@@ -3,6 +3,8 @@ import styled, { css } from "styled-components";
 const Form = styled.form`
 	margin: 0 auto;
 	background-color: var(--color-grey-0);
+	width: 100%;
+	border-radius: 6px;
 
 	${({ $for }) =>
 		$for === "regular" &&
@@ -10,23 +12,21 @@ const Form = styled.form`
 			padding: 3rem 3rem;
 
 			@media (min-width: 400px) {
-				padding: 3rem 5rem;
+				padding: 5rem 5rem;
 			}
 		`}
 
 	${({ $for }) =>
 		$for === "modal" &&
 		css`
-			width: 80rem;
-		`}
+			/* width: 80rem; */
+		`};
 `;
 
 const Row = styled.div`
 	display: grid;
 	grid-template-columns: 1fr;
 	align-items: center;
-	margin: 0 auto;
-	max-width: 40rem;
 	column-gap: 2rem;
 
 	&:not(:has(> p)) {

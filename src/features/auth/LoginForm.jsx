@@ -34,7 +34,6 @@ function LoginForm() {
 			<Form.RowVertical>
 				<Form.Label>Email address</Form.Label>
 				<Form.Input
-					$width="40rem"
 					{...register("email", {
 						required: "Email is required",
 						pattern: {
@@ -49,7 +48,6 @@ function LoginForm() {
 				<Form.Label>Password</Form.Label>
 				<Form.Input
 					type="password"
-					$width="40rem"
 					{...register("password", { required: "Password is required" })}
 				/>
 			</Form.RowVertical>
