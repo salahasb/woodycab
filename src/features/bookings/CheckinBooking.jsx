@@ -1,5 +1,4 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import { IoIosArrowRoundBack } from "react-icons/io";
 import Button from "../../ui/Button.styled";
 import { MainSpinner, MiniSpinner } from "../../ui/LoadingSpinners";
 import OutletLayout from "../../ui/OutletLayout";

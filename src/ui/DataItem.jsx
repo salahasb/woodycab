@@ -2,18 +2,31 @@ import styled from "styled-components";
 
 const StyledDataItem = styled.div`
 	display: flex;
-	align-items: flex-start;
+	align-items: start;
 	gap: 1.6rem;
 
 	& p {
 		display: flex;
 		gap: 0.5rem;
-		align-items: baseline;
+		align-items: start;
+		margin-top: 1.8px;
+		word-break: break-all;
 
+		@media (min-width: 600px) {
+			margin-top: 0px;
+		}
 		/* white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		width: 50px; */
+
+		& img {
+			margin-top: 1.8px;
+
+			@media (min-width: 600px) {
+				margin-top: 5.2px;
+			}
+		}
 	}
 `;
 

@@ -47,12 +47,16 @@ const StyledToasterList = styled.ul`
 	flex-direction: column-reverse;
 	align-items: center;
 	gap: 1rem;
-	width: 50rem;
+	/* width: 50rem; */
 	position: fixed;
 	top: 0;
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 2;
+	margin-top: 4rem;
+	max-width: 40rem;
+	width: 90%;
+	min-width: 28rem;
 `;
 
 const StyledToaster = styled.li`
@@ -66,8 +70,17 @@ const StyledToaster = styled.li`
 	box-shadow: 0px 0px 33px -1px rgba(0, 0, 0, 0.2);
 	column-gap: 2rem;
 	row-gap: 0.8rem;
-	width: 40rem;
 	z-index: 3;
+
+	& h3 {
+		font-size: 1.6rem;
+		margin-bottom: 0rem;
+
+		@media (min-width: 600px) {
+			font-size: 2rem;
+			margin-bottom: 0.2rem;
+		}
+	}
 
 	&::after {
 		content: "";
@@ -88,10 +101,15 @@ const IconBox = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 4rem;
-	height: 4rem;
 	grid-row: span 2;
 	padding-left: 0.1rem;
+	width: 3rem;
+	height: 3rem;
+
+	@media (min-width: 600px) {
+		width: 4rem;
+		height: 4rem;
+	}
 
 	${({ $curToast }) =>
 		$curToast.type === "warning" &&
@@ -100,8 +118,13 @@ const IconBox = styled.div`
 		`}
 `;
 
-const Icon = styled.svg.attrs({ size: 25 })`
+const Icon = styled.svg`
+	font-size: 1.8rem;
 	color: var(--color-grey-0);
+
+	@media (min-width: 600px) {
+		font-size: 2rem;
+	}
 `;
 
 const Close = styled(IconButton)`

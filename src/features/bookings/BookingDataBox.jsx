@@ -3,7 +3,14 @@ import {
 	HiOutlineChatBubbleBottomCenterText,
 	HiOutlineCheckCircle,
 	HiOutlineCurrencyDollar,
+	HiOutlineEnvelope,
+	HiOutlineFingerPrint,
 	HiOutlineHomeModern,
+	HiOutlineIdentification,
+	HiOutlineInformationCircle,
+	HiOutlineUser,
+	HiOutlineUserGroup,
+	HiUser,
 } from "react-icons/hi2";
 import styled, { css } from "styled-components";
 import { formatCurrency, formatDistanceFromNow } from "../../utils/helpers";
@@ -33,9 +40,12 @@ const Header = styled.header`
 		align-items: center;
 	}
 
+	@media (min-width: 600px) {
+		font-size: 1.8rem;
+	}
+
 	@media (min-width: 768px) {
 		padding: 2rem 4rem;
-		font-size: 1.8rem;
 	}
 
 	& button {
@@ -94,12 +104,10 @@ const Price = styled.div`
 	color: ${({ $isPaid }) =>
 		$isPaid ? "var(--color-green-700)" : "var(--color-yellow-700)"};
 
-	/* padding: 2.4rem 3rem; */
 	padding: 3rem 2rem;
 
 	display: flex;
 	justify-content: space-between;
-	/* align-items: center; */
 	gap: 1rem;
 	font-size: 1.2rem;
 	position: relative;
@@ -118,9 +126,6 @@ const Price = styled.div`
 
 	& div div {
 		width: fit-content;
-		/* text-align: center; */
-
-		/* gap: 0.rem; */
 	}
 
 	& svg {
@@ -137,7 +142,7 @@ const Price = styled.div`
 
 		position: absolute;
 		bottom: 8px;
-		right: 10px;
+		right: 12px;
 
 		@media (min-width: 768px) {
 			position: static;
@@ -205,27 +210,8 @@ function BookingDataBox({ booking }) {
 				{/* <span>Booking #{booking.id}</span> */}
 			</Header>
 			<Body>
-				{/* <Guest>
-					<p>
-						{fullName} {numGuests && `+  ${numGuests} guests`}
-					</p>
-					&bull;
-					<p>{email}</p>
-					&bull;
-					<p>National ID {nationalID}</p>
-					<Tag $type={statusToTagName[status]}>{status}</Tag>
-				</Guest> */}
-
-				{observations && (
-					<DataItem
-						icon={<HiOutlineChatBubbleBottomCenterText />}
-						label={"Observation"}
-						content={observations}
-					/>
-				)}
-
 				<DataItem
-					icon={<HiOutlineChatBubbleBottomCenterText />}
+					icon={<HiOutlineUser />}
 					label={"Guests"}
 					content={
 						<>
@@ -241,13 +227,13 @@ function BookingDataBox({ booking }) {
 				/>
 
 				<DataItem
-					icon={<HiOutlineChatBubbleBottomCenterText />}
+					icon={<HiOutlineEnvelope />}
 					label={"Email"}
 					content={email}
 				/>
 
 				<DataItem
-					icon={<HiOutlineCheckCircle />}
+					icon={<HiOutlineFingerPrint />}
 					label={"National ID"}
 					content={nationalID}
 				/>
@@ -259,10 +245,18 @@ function BookingDataBox({ booking }) {
 				/>
 
 				<DataItem
-					icon={<HiOutlineCheckCircle />}
+					icon={<HiOutlineInformationCircle />}
 					label={"Status"}
 					content={<Tag $type={statusToTagName[status]}>{status}</Tag>}
 				/>
+
+				{observations && (
+					<DataItem
+						icon={<HiOutlineChatBubbleBottomCenterText />}
+						label={"Observation"}
+						content={observations}
+					/>
+				)}
 
 				<Price $isPaid={isPaid}>
 					<DataItem
@@ -274,11 +268,9 @@ function BookingDataBox({ booking }) {
 					<p>{isPaid ? "Paid" : "Will pay at property"}</p>
 				</Price>
 
-				{/* <Tag $type={isPaid ? "green" : "red"}> */}
 				<BookingDate>
 					Booked {format(new Date(created_at), "EEE, MMM dd yyyy, p")}
 				</BookingDate>
-				{/* </Tag> */}
 			</Body>
 		</>
 	);

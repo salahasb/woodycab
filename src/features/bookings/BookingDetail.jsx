@@ -37,13 +37,6 @@ function BookingDetail() {
 
 	return (
 		<OutletLayout heading={`booking #${id}`}>
-			{/* <OutletLayout.Box>
-				<Button $variation="back" onClick={() => navigate(-1)}>
-					<IoIosArrowRoundBack size={25} />
-					Back
-				</Button>
-			</OutletLayout.Box> */}
-
 			<OutletLayout.Box $full>
 				<BookingDataBox booking={booking} />
 
