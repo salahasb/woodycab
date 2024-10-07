@@ -18,6 +18,11 @@ const Option = styled.div`
 	background-color: var(--color-grey-0);
 	gap: 2rem;
 	margin-bottom: 4rem;
+	font-size: 1rem;
+
+	@media (min-width: 600px) {
+		font-size: initial;
+	}
 `;
 
 function CheckinBooking() {
@@ -72,13 +77,6 @@ function CheckinBooking() {
 
 	return (
 		<OutletLayout heading={`Check in booking #${id}`}>
-			<OutletLayout.Box>
-				<Button $variation="back" onClick={() => navigate(-1)}>
-					<IoIosArrowRoundBack size={25} />
-					Back
-				</Button>
-			</OutletLayout.Box>
-
 			<OutletLayout.Box $full>
 				<BookingDataBox booking={booking} />
 
@@ -118,7 +116,7 @@ function CheckinBooking() {
 						{isUpdating ? <MiniSpinner /> : `Check in booking #${id}`}
 					</Button>
 
-					<Button $variation="secondary" onClick={() => navigate(-1)}>
+					<Button $variation="secondary" $booking onClick={() => navigate(-1)}>
 						Back
 					</Button>
 				</ButtonGroup>

@@ -31,7 +31,7 @@ export async function getBooking(id) {
 	if (!token) throw new Error(`Token Not Found!`);
 
 	const res = await fetch(
-		`${supabaseUrl}/rest/v1/bookings?id=eq.${id}&select=*,cabins(name),guests(fullName,email,nationality,nationalID)`,
+		`${supabaseUrl}/rest/v1/bookings?id=eq.${id}&select=*,cabins(name),guests(fullName,email,nationality,nationalID,countryFlag)`,
 		{
 			headers: {
 				apikey: supabaseKey,

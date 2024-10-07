@@ -20,7 +20,6 @@ const styles = {
 
 		&:hover {
 			background-color: var(--color-grey-100);
-			/* color: var(--color-brand-50); */
 		}
 	`,
 
@@ -38,13 +37,6 @@ const styles = {
 	filter: css`
 		padding: 0.5rem 0.7rem;
 		font-size: 1.2rem;
-
-		/* ${({ active }) =>
-			active &&
-			css`
-				background-color: var(--color-brand-700);
-				color: var(--color-brand-50);
-			`} */
 
 		&:is(:hover, .active) {
 			background-color: var(--color-brand-700);
@@ -75,7 +67,6 @@ const styles = {
 		}
 	`,
 	back: css`
-		display: flex;
 		align-items: center;
 		gap: 0.3rem;
 		color: var(--color-brand-800);
@@ -93,6 +84,17 @@ const Button = styled.button`
 	&:disabled {
 		cursor: not-allowed;
 	}
+
+	display: ${({ $booking }) => ($booking ? "none" : "flex")};
+
+	${({ $booking }) =>
+		$booking
+			? css`
+					@media (min-width: 600px) {
+						display: flex;
+					}
+			  `
+			: ""}
 
 	${({ size }) =>
 		size === "fit" &&
