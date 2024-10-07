@@ -29,6 +29,7 @@ const Row = styled.div`
 	align-items: center;
 	column-gap: 2rem;
 	max-width: 40rem;
+	min-width: 22rem;
 	margin: 0 auto;
 
 	&:not(:has(> p), :last-child) {
@@ -39,7 +40,7 @@ const Row = styled.div`
 		max-width: initial;
 
 		padding-bottom: 2rem !important;
-		grid-template-columns: 0.6fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr;
 	}
 
 	&:last-of-type:has(button) {
@@ -111,7 +112,7 @@ const Row = styled.div`
 const RowVertical = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 0.8rem;
+	gap: 0.4rem;
 	margin-bottom: 2.5rem;
 
 	&:last-of-type:has(button) {

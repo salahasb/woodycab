@@ -3,24 +3,43 @@ import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
-import IconButton from "./IconButton.styled";
 import useOutsideClick from "../hooks/useOutsideClick";
 import CloseButton from "./CloseButton.styled";
 // import { useOutsideClick } from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
 	position: fixed;
+
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	background-color: var(--color-grey-0);
 	border-radius: var(--border-radius-lg);
 	box-shadow: var(--shadow-lg);
-	padding: 3.2rem 4rem;
+	padding: 4rem 2.5rem;
 	transition: all 0.5s;
-	max-width: 80%;
-	max-height: 70dvh;
+	max-width: 90%;
+	width: 90%;
+	/* height: fit-content; */
+	max-height: 90%;
 	overflow-y: auto;
+	z-index: 2;
+
+	@media (min-width: 425px) {
+		padding: 4rem 5rem;
+		/* width: max-content; */
+		/* height: fit-content; */
+		width: max-content;
+		/* max-width: ; */
+	}
+
+	@media (min-width: 768px) {
+		/* max-height: 80%;
+		max-width: 90%; */
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
 `;
 
 const Overlay = styled.div`

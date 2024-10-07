@@ -1,20 +1,17 @@
 import styled from "styled-components";
 import Heading from "./Heading";
 import Button from "./Button.styled";
-import useDeleteCabin from "../features/cabins/useDeleteCabin";
 import { MiniSpinner } from "./LoadingSpinners";
-import { useToaster } from "../contexts/ToasterContext";
-import useDeleteBooking from "../features/bookings/useDeleteBooking";
 
 const StyledConfirmDelete = styled.div`
-	width: 40rem;
+	width: 100%;
+	max-width: 40rem;
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
 
 	& p {
 		color: var(--color-grey-500);
-		margin-bottom: 1.2rem;
+		margin-bottom: 2.4rem;
 	}
 
 	& div {
@@ -32,7 +29,7 @@ function ConfirmDelete({
 }) {
 	return (
 		<StyledConfirmDelete>
-			<Heading as="h3">Delete {resource}</Heading>
+			<Heading as="h4">Delete {resource}</Heading>
 			<p>
 				Are you sure you want to delete this {resource} permanently? This action
 				cannot be undone.
