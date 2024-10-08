@@ -71,6 +71,7 @@ const StyledToaster = styled.li`
 	column-gap: 2rem;
 	row-gap: 0.8rem;
 	z-index: 3;
+	border: 1px solid var(--color-grey-200);
 
 	& h3 {
 		font-size: 1.6rem;
