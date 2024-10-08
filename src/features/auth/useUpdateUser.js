@@ -13,7 +13,7 @@ function useUpdateUser() {
 		onSuccess: (user) => {
 			// queryClient.invalidateQueries(["user"]);
 			console.log(user);
-			queryClient.setQueryData(["user"], user);
+			queryClient.setQueryData(["user"], user.user);
 		},
 		onError: (err) => {
 			addToaster("error", err.message);

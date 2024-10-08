@@ -1,46 +1,19 @@
-import { supabaseKey, supabaseUrl } from "./supabase";
+import supabase, { supabaseKey, supabaseUrl } from "./supabase";
 
 export async function getSettings() {
-	const token = localStorage.getItem("authToken");
+	const { data, error } = await supabase.from("settings").select("*");
 
-	if (!token) throw new Error(`Token Not Found!`);
-
-	const res = await fetch(`${supabaseUrl}/rest/v1/settings`, {
-		headers: {
-			apikey: supabaseKey,
-			Authorization: `Bearer ${token}`,
-		},
-	});
-
-	const [data] = await res.json();
-
-	if (!res.ok) {
-		throw new Error(`${data.message}`);
+	if (error) {
+		throw new Error(`${error.message}`);
 	}
 
-	return data;
+	return data[0];
 }
 
 export async function patchSettings(body) {
-	const token = localStorage.getItem("authToken");
-	console.log(body);
+	const { error } = await supabase.from("settings").update(body).eq("id", 6);
 
-	if (!token) throw new Error(`Token Not Found!`);
-
-	const res = await fetch(`${supabaseUrl}/rest/v1/settings?id=eq.6`, {
-		method: "PATCH",
-		body: JSON.stringify(body),
-		headers: {
-			"Content-Type": "application/json",
-			apikey: supabaseKey,
-			Authorization: `Bearer ${token}`,
-		},
-	});
-
-	if (!res.ok) {
-		const data = await res.json();
-		throw new Error(`${data.message}`);
+	if (error) {
+		throw new Error(`${error.message}`);
 	}
-	// console.log(data);
-	// return data;
 }

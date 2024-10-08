@@ -6,6 +6,7 @@ import { useToaster } from "../../contexts/ToasterContext";
 function useCheckin() {
 	const navigate = useNavigate();
 	const { addToaster } = useToaster();
+	const queryClient = useQueryClient();
 
 	const { mutate: checkin, isLoading: isCheckingIn } = useMutation({
 		mutationFn: ({ id, body }) =>
@@ -17,7 +18,7 @@ function useCheckin() {
 				`the Booking ${id} has been successfully checked-in`
 			);
 
-			// queryClient.invalidateQueries(["booking", id]);
+			queryClient.invalidateQueries(["booking", id]);
 			navigate(`/bookings/${id}`);
 		},
 

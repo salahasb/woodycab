@@ -17,6 +17,9 @@ export async function SignUpAuth(body) {
 
 	if (!res.ok) throw new Error(data.msg || "Something went wrong");
 
+	// const { data, error } = await supabase.auth.signUp(body);
+	// if (error) throw new Error(error.message);
+
 	return data;
 }
 
@@ -49,8 +52,8 @@ export async function getUser() {
 }
 
 export async function updateUserAuth({ name, avatar, password }) {
-	const token = localStorage.getItem("authToken");
-	if (!token) throw new Error(`Token Not Found!`);
+	// const token = localStorage.getItem("authToken");
+	// if (!token) throw new Error(`Token Not Found!`);
 
 	const body = { data: {} };
 
@@ -70,14 +73,18 @@ export async function updateUserAuth({ name, avatar, password }) {
 	}
 
 	// update user info + avatar in user table
-	const res = await fetch(`${supabaseUrl}/${AUTH_ENDPOINT}/user`, {
-		headers: { apikey: supabaseKey, Authorization: `Bearer ${token}` },
-		method: "PUT",
-		body: JSON.stringify(body),
-	});
+	// const res = await fetch(`${supabaseUrl}/${AUTH_ENDPOINT}/user`, {
+	// 	headers: { apikey: supabaseKey, Authorization: `Bearer ${token}` },
+	// 	method: "PUT",
+	// 	body: JSON.stringify(body),
+	// });
 
-	const data = await res.json();
-	if (!res.ok) throw new Error(data.msg || "Failed to update user");
+	// const data = await res.json();
+	// if (!res.ok) throw new Error(data.msg || "Failed to update user");
+
+	const { data, error: updateError } = await supabase.auth.updateUser(body);
+
+	if (updateError) throw new Error(updateError.message);
 
 	// update user avatar in supabase storage
 	if (avatar) {

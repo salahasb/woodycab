@@ -23,7 +23,6 @@ const Heading = styled.h1`
 	font-size: 8rem;
 
 	@media (min-width: 600px) {
-		/* margin-bottom: 0.2rem; */
 		font-size: 20rem;
 	}
 `;
@@ -31,9 +30,13 @@ const Heading = styled.h1`
 const Description = styled.p`
 	margin-bottom: 4rem;
 	font-size: 1.4rem;
+	max-width: 90%;
+	text-align: center;
 
 	@media (min-width: 600px) {
-		font-size: 3rem;
+		max-width: 50rem;
+		text-align: start;
+		font-size: 2rem;
 	}
 
 	${({ $bold }) =>
@@ -47,33 +50,14 @@ function ErrorPage() {
 	const error = useRouteError();
 	const navigate = useNavigate();
 
-	const isConnectionError =
-		error.message.includes("Failed to fetch dynamically imported module") ||
-		error.message.includes("Failed to fetch");
-	const errMsg = isConnectionError && "Check out your internet connection";
-
-	// console.log(isConnectionError);
-	// console.log(error.message);
 	return (
 		<StyledErrorPage>
 			<Heading>Oops!</Heading>
-			{/* 
-			<Description>
-				{error.status} - {error.statusText}
-			</Description> */}
-			<Description $bold>{"Something went very wrong"}</Description>
-			{/* 
-			{isConnectionError && (
-				<Button onClick={() => navigate(0)}>
-					<IoReload /> Reload
-				</Button>
-			)} */}
-			{/* {!isConnectionError && (
-				<Button type="pagination" onClick={() => navigate(-1)}>
-					<IoArrowBackOutline />
-					Go back
-				</Button>
-			)} */}
+
+			<Description $bold>
+				{error?.message || "Something went very wrong"}
+			</Description>
+
 			{
 				<Button type="pagination" onClick={() => navigate("/")}>
 					Go home
