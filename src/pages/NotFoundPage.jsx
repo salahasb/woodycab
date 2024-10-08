@@ -14,14 +14,22 @@ const StyledNotFoundPage = styled.div`
 	gap: 2rem;
 
 	& > h1 {
-		font-size: 20rem;
+		font-size: 10rem;
 		font-weight: 500;
 		line-height: 0.78;
+
+		@media (min-width: 600px) {
+			font-size: 16rem;
+		}
 	}
 
 	& > p {
-		font-size: 5rem;
+		font-size: 2rem;
 		margin-bottom: 2rem;
+
+		@media (min-width: 600px) {
+			font-size: 2.8rem;
+		}
 	}
 `;
 

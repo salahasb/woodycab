@@ -8,22 +8,33 @@ const StyledErrorPage = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding-top: 12rem;
+	justify-content: center;
 	color: var(--color-grey-700);
-
 	gap: 1rem;
 	background-color: var(--color-grey-0);
+
+	@media (min-width: 600px) {
+		padding-bottom: 5rem;
+	}
 `;
 
 const Heading = styled.h1`
 	font-weight: 800;
-	font-size: 20rem;
-	margin-bottom: 1rem;
+	font-size: 8rem;
+
+	@media (min-width: 600px) {
+		/* margin-bottom: 0.2rem; */
+		font-size: 20rem;
+	}
 `;
 
 const Description = styled.p`
-	margin-bottom: 2rem;
-	font-size: 2rem;
+	margin-bottom: 4rem;
+	font-size: 1.4rem;
+
+	@media (min-width: 600px) {
+		font-size: 3rem;
+	}
 
 	${({ $bold }) =>
 		$bold &&

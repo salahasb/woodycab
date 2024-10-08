@@ -32,6 +32,7 @@ const router = createBrowserRouter([
 	{
 		element: (
 			<ProtectedRoute>
+				<ErrorPage />
 				<AppLayout />
 			</ProtectedRoute>
 		),
