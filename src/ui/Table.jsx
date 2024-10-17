@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const TableContext = createContext();
 
@@ -13,20 +13,32 @@ const StyledTable = styled.div`
 `;
 
 const CommonRow = styled.div`
-	min-width: 90rem;
 	display: grid;
 	grid-template-columns: ${({ $columns }) => $columns};
-	gap: 2.4rem;
+	/* gap: 2.4rem; */
 	align-items: center;
+	font-size: 1rem;
+	padding: 0.8rem 1rem;
+	min-width: 60rem;
 	width: 100%;
-	font-size: 1.4rem;
+
+	@media (min-width: 1024px) {
+		min-width: 90rem;
+
+		width: 100%;
+		font-size: 1.4rem;
+		gap: 2.4rem;
+	}
 `;
 
 const StyledHeader = styled(CommonRow)`
 	background-color: var(--color-grey-50);
 	/* border: var(--border-main); */
 	border-bottom: 0;
-	padding: 1.6rem 1.4rem;
+
+	@media (min-width: 1024px) {
+		padding: 1.6rem 1.4rem;
+	}
 
 	& div {
 		font-weight: 600;
@@ -39,7 +51,10 @@ const StyledHeader = styled(CommonRow)`
 const StyledRow = styled(CommonRow)`
 	background-color: var(--color-grey-0);
 	border-bottom: var(--border-main);
-	padding: 1.6rem 1.6rem;
+
+	@media (min-width: 1024px) {
+		padding: 1.6rem 1.6rem;
+	}
 
 	&:last-of-type {
 		border-bottom: 0;
@@ -55,8 +70,6 @@ const Footer = styled.footer`
 	flex-direction: column;
 	gap: 1rem;
 
-	padding: 1.2rem 1.5rem;
-	font-size: 1.4rem;
 	color: var(--color-grey-600);
 	font-weight: 500;
 	position: sticky;
@@ -67,6 +80,14 @@ const Footer = styled.footer`
 
 	@media (min-width: 500px) {
 		flex-direction: row;
+	}
+
+	padding: 1rem 1rem;
+	font-size: 1rem;
+
+	@media (min-width: 1024px) {
+		padding: 1.2rem 1.5rem;
+		font-size: 1.4rem;
 	}
 
 	/* This will hide the footer when it contains no child elements. Possible thanks to the parent selector :has 🎉 */

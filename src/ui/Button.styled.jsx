@@ -54,12 +54,15 @@ const styles = {
 
 	pagination: css`
 		padding: 0.5rem 1rem;
-		font-size: 1.4rem;
+		font-size: 1.2rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
 
+		@media (min-width: 1024px) {
+			font-size: 1.4rem;
+		}
 		&:not(:disabled):hover {
 			background-color: var(--color-brand-700);
 			color: var(--color-brand-50);
@@ -67,7 +70,10 @@ const styles = {
 
 		& svg {
 			stroke-width: 10rem;
-			margin-bottom: 2px;
+
+			@media (min-width: 1024px) {
+				margin-bottom: 2px;
+			}
 		}
 	`,
 	back: css`

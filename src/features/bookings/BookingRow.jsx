@@ -6,10 +6,14 @@ import Tag from "../../ui/Tag";
 import BookingOptions from "./BookingOptions";
 
 const Cabin = styled.div`
-	font-size: 1.6rem;
+	font-size: 1.2rem;
 	font-weight: 600;
 	color: var(--color-grey-600);
 	font-family: "Sono";
+
+	@media (min-width: 1024px) {
+		font-size: 1.6rem;
+	}
 `;
 
 const Stacks = styled.div`
@@ -23,7 +27,12 @@ const Stacks = styled.div`
 
 	& span:last-child {
 		color: var(--color-grey-500);
-		font-size: 1.2rem;
+
+		font-size: 0.8rem;
+
+		@media (min-width: 1024px) {
+			font-size: 1.2rem;
+		}
 	}
 `;
 
@@ -71,7 +80,9 @@ function BookingRow({ booking }) {
 					{format(new Date(endDate), "MMM dd yyyy")}
 				</span>
 			</Stacks>
-			<Tag $type={statusToTagName[status]}>{status.replace("-", " ")} </Tag>
+			<Tag resource="table" $type={statusToTagName[status]}>
+				{status.replace("-", " ")}{" "}
+			</Tag>
 			<Amount>{formatCurrency(totalPrice)}</Amount>
 			<BookingOptions booking={booking} />
 		</Table.Row>

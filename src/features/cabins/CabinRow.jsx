@@ -10,18 +10,26 @@ import CabinOptions from "./CabinOptions";
 
 const Img = styled.img`
 	display: block;
-	width: 6.4rem;
+	width: 4rem;
 	aspect-ratio: 3 / 2;
 	object-fit: cover;
 	object-position: center center;
 	transform: scale(1.5);
 	margin: -2px 0px;
+
+	@media (min-width: 1024px) {
+		width: 6.4rem;
+	}
 `;
 
 const Cabin = styled.div`
-	font-size: 1.6rem;
+	font-size: 1.2rem;
 	font-weight: 600;
 	font-family: "Sono";
+
+	@media (min-width: 1024px) {
+		font-size: 1.6rem;
+	}
 `;
 
 const Price = styled.div`

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Tag = styled.span`
 	width: fit-content;
@@ -13,7 +13,12 @@ const Tag = styled.span`
 	background-color: var(--color-${({ $type }) => $type}-100);
 
 	@media (min-width: 600px) {
-		font-size: 1.1rem;
+		${({ resource }) =>
+			resource !== "table"
+				? css`
+						font-size: 1.1rem;
+				  `
+				: ""}
 	}
 `;
 
