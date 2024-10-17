@@ -36,11 +36,15 @@ const styles = {
 
 	filter: css`
 		padding: 0.5rem 0.7rem;
-		font-size: 1.2rem;
+		font-size: 1rem;
 
 		&:is(:hover, .active) {
 			background-color: var(--color-brand-700);
 			color: var(--color-brand-50);
+		}
+
+		@media (min-width: 365px) {
+			font-size: 1.2rem;
 		}
 
 		@media (min-width: 400px) {
