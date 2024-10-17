@@ -1,38 +1,7 @@
 import styled from "styled-components";
 import CommonBox from "../../ui/Box.styled";
-import {
-	Cell,
-	Legend,
-	Pie,
-	PieChart,
-	ResponsiveContainer,
-	Tooltip,
-} from "recharts";
+import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
 import { prepareData } from "./helpers";
-
-const StyledStaySummary = styled.div`
-	${CommonBox}
-	grid-column: span 2;
-
-	padding: 2.2rem;
-
-	& > h2 {
-		font-size: 2.2rem;
-		font-weight: 600;
-		margin-bottom: 2rem;
-	}
-
-	& > div:first-of-type {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 6rem;
-
-		/* Pie chart */
-		& > div {
-		}
-	}
-`;
 
 const startDataLight = [
 	{
@@ -120,45 +89,102 @@ const startDataDark = [
 	},
 ];
 
+const StyledStaySummary = styled.div`
+	${CommonBox}
+	padding: 2.2rem;
+
+	@media (min-width: 465px) {
+		grid-column: span 2;
+	}
+
+	@media (min-width: 850px) {
+		grid-column: span 1;
+	}
+
+	@media (min-width: 1024px) {
+		grid-column: span 2;
+	}
+
+	& > h2 {
+		font-size: 1.8rem;
+
+		@media (min-width: 365px) {
+			font-size: 2rem;
+		}
+
+		font-weight: 600;
+		margin-bottom: 2rem;
+	}
+
+	/* PieCharts */
+	& > .recharts-wrapper {
+		display: flex;
+		flex-direction: row;
+
+		justify-content: center;
+		align-items: center;
+		gap: 3rem;
+		margin: 0rem auto;
+		padding: 2rem 0;
+
+		width: 100% !important;
+		height: fit-content !important;
+		max-height: initial !important;
+		max-width: initial !important;
+
+		@media (min-width: 440px) {
+			flex-direction: row;
+		}
+
+		@media (min-width: 1024px) {
+			padding: 2rem;
+		}
+
+		/* Pie svg */
+		& > .recharts-surface {
+			max-width: 220px;
+
+			& .recharts-sector:focus {
+				outline: 0;
+			}
+		}
+
+		/* Legend */
+		& > .recharts-legend-wrapper {
+			position: initial !important;
+			flex-shrink: 0;
+		}
+	}
+`;
+
 function StaySummary({ stays }) {
 	//
 	const chartData = prepareData(startDataLight, stays);
 
-	console.log(chartData);
 	return (
 		<StyledStaySummary>
 			<h2>Stay duration summary</h2>
 
-			{/* <div> */}
-			<ResponsiveContainer width={"100%"} height="82%">
-				<PieChart width={220} height={220}>
-					<Pie
-						data={chartData}
-						dataKey="value"
-						nameKey="duration"
-						cx="50%"
-						cy="50%"
-						innerRadius={82}
-						outerRadius={110}
-						fill="#82ca9d"
-						paddingAngle={2}
-					>
-						{chartData.map(({ color, duration }) => (
-							<Cell key={duration} fill={color} stroke={color} />
-						))}
-					</Pie>
-					<Tooltip />
-					<Legend
-						verticalAlign="middle"
-						align="right"
-						width="30%"
-						layout="vertical"
-						iconSize={15}
-						iconType="circle"
-					/>
-				</PieChart>
-			</ResponsiveContainer>
-			{/* </div> */}
+			<PieChart width={220} height={220}>
+				<Pie
+					data={chartData}
+					dataKey="value"
+					nameKey="duration"
+					cx="50%"
+					cy="105"
+					innerRadius={86}
+					outerRadius={109}
+					fill="#82ca9d"
+					paddingAngle={2}
+				>
+					{chartData.map(({ color, duration }) => (
+						<Cell key={duration} fill={color} stroke={color} />
+					))}
+				</Pie>
+
+				<Tooltip />
+				<Legend layout="vertical" iconSize={7} iconType="circle" />
+			</PieChart>
 		</StyledStaySummary>
 	);
 }

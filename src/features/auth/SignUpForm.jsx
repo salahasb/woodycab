@@ -3,6 +3,11 @@ import Button from "../../ui/Button.styled";
 import Form from "../../ui/Form.styled";
 import useSignUp from "./useSignUp";
 import { MiniSpinner } from "../../ui/LoadingSpinners";
+import styled from "styled-components";
+
+const StyledFormContainer = styled.div`
+	background-color: var(--color-grey-0);
+`;
 
 function SignUpForm() {
 	const { signUp, isLoading } = useSignUp();
@@ -28,6 +33,7 @@ function SignUpForm() {
 	}
 
 	return (
+		// <StyledFormContainer>
 		<Form onSubmit={handleSubmit(handleSignUp)}>
 			<Form.Row>
 				<Form.Label>Full name</Form.Label>

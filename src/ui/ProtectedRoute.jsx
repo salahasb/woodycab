@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function ProtectedRoute({ children }) {
 	// React Query
-	const { isLoading, error, remove } = useUser();
+	const { isLoading, error, remove, user } = useUser();
 
 	// React Router
 	const navigate = useNavigate();
@@ -19,6 +19,7 @@ function ProtectedRoute({ children }) {
 		}
 	}, [error, navigate, remove]);
 
+	console.log(user);
 	// Early returns
 	if (isLoading) return <MainSpinner $full />;
 

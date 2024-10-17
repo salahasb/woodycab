@@ -13,29 +13,35 @@ export async function getCabins() {
 }
 
 export async function deleteCabin(id) {
-	const token = localStorage.getItem("authToken");
+	// const token = localStorage.getItem("authToken");
 
-	if (!token) throw new Error(`Token Not Found!`);
+	// if (!token) throw new Error(`Token Not Found!`);
 
-	const res = await fetch(`${supabaseUrl}/rest/v1/cabins?id=eq.${id}`, {
-		method: "DELETE",
-		headers: {
-			apikey: supabaseKey,
-			Authorization: `Bearer ${token}`,
-		},
-	});
+	// const res = await fetch(`${supabaseUrl}/rest/v1/cabins?id=eq.${id}`, {
+	// 	method: "DELETE",
+	// 	headers: {
+	// 		apikey: supabaseKey,
+	// 		Authorization: `Bearer ${token}`,
+	// 	},
+	// });
 
-	if (!res.ok) {
-		const data = await res.json();
+	// if (!res.ok) {
+	// 	const data = await res.json();
 
-		throw new Error(`${res.status} - ${data.message} `);
+	// 	throw new Error(`${res.status} - ${data.message} `);
+	// }
+
+	const { error } = await supabase.from("cabins").delete().eq("id", id);
+
+	if (error) {
+		throw new Error(error.message);
 	}
 }
 
 export async function postCabin(data) {
-	const token = localStorage.getItem("authToken");
+	// const token = localStorage.getItem("authToken");
 
-	if (!token) throw new Error(`Token Not Found!`);
+	// if (!token) throw new Error(`Token Not Found!`);
 
 	let imageUrl, imageName;
 
@@ -49,29 +55,33 @@ export async function postCabin(data) {
 	}
 
 	//  uploading cabin first
-	const res = await fetch(`${supabaseUrl}/rest/v1/cabins`, {
-		method: "POST",
-		body: JSON.stringify({ ...data, image: imageUrl }),
-		headers: {
-			"Content-type": "application/json",
-			apikey: supabaseKey,
-			Authorization: `Bearer ${token}`,
-		},
-	});
+	// const res = await fetch(`${supabaseUrl}/rest/v1/cabins`, {
+	// 	method: "POST",
+	// 	body: JSON.stringify({ ...data, image: imageUrl }),
+	// 	headers: {
+	// 		"Content-type": "application/json",
+	// 		apikey: supabaseKey,
+	// 		Authorization: `Bearer ${token}`,
+	// 	},
+	// });
 
-	if (!res.ok) throw new Error(`Cabin has not uploaded - ${res.statusText}`);
+	const { error: uploadError } = await supabase
+		.from("cabins")
+		.insert({ ...data, image: imageUrl });
+
+	if (uploadError) throw new Error(uploadError.message);
 
 	if (typeof data.image === "string") return;
 
 	// storing the cabin image in supabase storage later
 	const image = data.image;
 
-	const { data: newCabin, error } = await supabase.storage
+	const { data: newCabin, error: newCabinError } = await supabase.storage
 		.from("cabin-images")
 		.upload(`${imageName}`, image);
 
 	// Delete cabin if cabin image didn't successfully upload
-	if (error) {
+	if (newCabinError) {
 		// await deleteCabin(newCabin.id);
 		throw new Error("Cabin image has not uploaded");
 	}
@@ -80,10 +90,10 @@ export async function postCabin(data) {
 }
 
 export async function updateCabin({ id, body }) {
-	const token = localStorage.getItem("authToken");
+	// const token = localStorage.getItem("authToken");
 
 	// return;
-	if (!token) throw new Error(`Token Not Found!`);
+	// if (!token) throw new Error(`Token Not Found!`);
 
 	let image, imageName;
 
@@ -97,17 +107,22 @@ export async function updateCabin({ id, body }) {
 	}
 
 	//  uploading cabin first
-	const res = await fetch(`${supabaseUrl}/rest/v1/cabins?id=eq.${id}`, {
-		method: "PATCH",
-		body: JSON.stringify({ ...body, image }),
-		headers: {
-			"Content-type": "application/json",
-			apikey: supabaseKey,
-			Authorization: `Bearer ${token}`,
-		},
-	});
+	// const res = await fetch(`${supabaseUrl}/rest/v1/cabins?id=eq.${id}`, {
+	// 	method: "PATCH",
+	// 	body: JSON.stringify({ ...body, image }),
+	// 	headers: {
+	// 		"Content-type": "application/json",
+	// 		apikey: supabaseKey,
+	// 		Authorization: `Bearer ${token}`,
+	// 	},
+	// });
 
-	if (!res.ok) throw new Error(`Cabin has not updated - ${res.statusText}`);
+	const { error: updateError } = await supabase
+		.from("cabins")
+		.update({ ...body, image })
+		.eq("id", id);
+
+	if (updateError) throw new Error(updateError.message);
 
 	if (typeof body.image === "string") return;
 

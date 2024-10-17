@@ -17,6 +17,22 @@ const GlobalStyles = createGlobalStyle`
   --tw-content: '';
 }
 
+::-webkit-scrollbar {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+ 
+::-webkit-scrollbar-track {
+  border-radius: 20px;       
+  background-color: var(--color-grey-50) ;
+  
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-grey-100);    
+  border-radius: 20px;       
+  border: 1px solid var(--color-grey-100);
+}
  
 html {
   font-size: 62.5%;
@@ -31,12 +47,16 @@ html {
 
   
 body {
+  scrollbar-width: thin;          
+  scrollbar-color: var(--color-grey-100);
+
   font-family: "Poppins", sans-serif;
   color: var(--color-grey-700);
   font-size: 1.6rem;
   margin: 0;
   line-height: inherit; /* 2 */
   position: relative;
+  background-color: var(--color-grey-50);
 }
 
  

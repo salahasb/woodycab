@@ -3,7 +3,6 @@ import CabinTable from "./CabinTable";
 import Button from "../../ui/Button.styled";
 import CabinForm from "./CabinForm";
 import Modal from "../../ui/Modal";
-import { useEffect } from "react";
 
 const StyledBox = styled.div`
 	margin-top: 4rem;

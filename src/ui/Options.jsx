@@ -7,7 +7,7 @@ import IconButton from "./IconButton.styled";
 const ToggleIcon = styled(IconButton)`
 	color: var(--color-grey-700);
 	width: fit-content;
-	margin-right: 2rem;
+	/* margin-right: 2rem; */
 
 	& svg {
 		width: 1.8rem;
@@ -17,7 +17,7 @@ const ToggleIcon = styled(IconButton)`
 
 const StyledOptions = styled.div`
 	position: relative;
-	justify-self: flex-end;
+	justify-self: center;
 `;
 
 const StyledList = styled.ul`

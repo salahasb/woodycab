@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import Stat from "./Stat";
 import useRecentBookings from "./useRecentBookings";
-import { formatCurrency } from "../../utils/helpers";
 import { MainSpinner } from "../../ui/LoadingSpinners";
 import { useSearchParams } from "react-router-dom";
 import { formatISO, subDays } from "date-fns";
@@ -10,13 +8,20 @@ import useCabins from "../cabins/useCabins";
 import Stats from "./Stats";
 import TodayBookings from "./TodayBookings";
 import StaySummary from "./StaySummary";
-import { useEffect } from "react";
 
 const StyledDashboardLayout = styled.div`
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: auto 33.8rem auto;
+	grid-template-columns: 1fr;
 	gap: 2rem;
+
+	@media (min-width: 482px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@media (min-width: 1220px) {
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto auto;
+	}
 `;
 
 function DashboardLayout() {

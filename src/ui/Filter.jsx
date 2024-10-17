@@ -10,6 +10,7 @@ const StyledFilter = styled.div`
 	background-color: var(--color-grey-0);
 	padding: 0.5rem;
 	border-radius: 5px;
+	width: fit-content;
 `;
 
 function Filter({ filters, resource }) {

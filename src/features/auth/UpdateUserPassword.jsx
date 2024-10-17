@@ -8,9 +8,8 @@ import useUpdateUser from "./useUpdateUser";
 import { useToaster } from "../../contexts/ToasterContext";
 import { MiniSpinner } from "../../ui/LoadingSpinners";
 
-const CurrentHeading = styled(Heading)`
-	margin-bottom: 2rem;
-`;
+// const CurrentHeading = styled(Heading)`
+// `;
 
 function UpdateUserPassword() {
 	// React query
@@ -45,7 +44,7 @@ function UpdateUserPassword() {
 	}
 	return (
 		<>
-			<CurrentHeading as="h3">Update password</CurrentHeading>
+			<Heading as="h3">Update password</Heading>
 			<Form
 				$for="regular"
 				onSubmit={handleSubmit(handleUpdatePassword)}

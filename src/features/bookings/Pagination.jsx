@@ -34,7 +34,7 @@ function Pagination() {
 						setSearchParams(searchParams);
 					}}
 				>
-					<SlArrowLeft size={8} /> Previous
+					<SlArrowLeft size={8} /> <span>Previous</span>
 				</Button>
 				<Button
 					disabled={isLastPage}
@@ -47,7 +47,7 @@ function Pagination() {
 						setSearchParams(searchParams);
 					}}
 				>
-					Next
+					<span>Next</span>
 					<SlArrowRight size={8} />{" "}
 				</Button>
 			</div>

@@ -4,16 +4,7 @@ import { TOAST_TIMEOUT } from "../utils/constants";
 
 const ToasterContext = createContext();
 
-const initialState = [
-	// {
-	// 	id: "409f9c20-c88d-4522-a333-e1e0fe3e978b",
-	// 	type: "error",
-	// 	message:
-	// 		'409 - update or delete on table "cabins" violates foreign key constraint "bookings_cabinId_fkey" on table "bookings" ',
-	// 	timerId: null,
-	// 	remainTime: TOAST_TIMEOUT,
-	// },
-];
+const initialState = [];
 
 function reducer(state = initialState, { type, payload }) {
 	// const { id } = state;

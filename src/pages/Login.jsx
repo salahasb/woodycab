@@ -3,20 +3,22 @@ import Logo from "../ui/Logo";
 import Heading from "../ui/Heading";
 import LoginForm from "../features/auth/LoginForm";
 import useUser from "../features/auth/useUser";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { MainSpinner } from "../ui/LoadingSpinners";
 import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
 
 const LoginLayout = styled.main`
 	height: 100vh;
 	width: 100%;
+	max-width: 55rem;
+	margin: 0 auto;
+	padding: 0 2rem;
 	background-color: var(--color-grey-50);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 4rem;
 	flex-direction: column;
+	gap: 4rem;
 `;
 
 function Login() {

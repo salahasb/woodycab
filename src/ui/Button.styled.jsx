@@ -20,7 +20,6 @@ const styles = {
 
 		&:hover {
 			background-color: var(--color-grey-100);
-			/* color: var(--color-brand-50); */
 		}
 	`,
 
@@ -36,30 +35,34 @@ const styles = {
 	`,
 
 	filter: css`
-		padding: 0.5rem 0.8rem;
-		font-size: 1.4rem;
-
-		/* ${({ active }) =>
-			active &&
-			css`
-				background-color: var(--color-brand-700);
-				color: var(--color-brand-50);
-			`} */
+		padding: 0.5rem 0.7rem;
+		font-size: 1rem;
 
 		&:is(:hover, .active) {
 			background-color: var(--color-brand-700);
 			color: var(--color-brand-50);
 		}
+
+		@media (min-width: 365px) {
+			font-size: 1.2rem;
+		}
+
+		@media (min-width: 400px) {
+			font-size: 1.4rem;
+		}
 	`,
 
 	pagination: css`
 		padding: 0.5rem 1rem;
-		font-size: 1.4rem;
+		font-size: 1.2rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
 
+		@media (min-width: 1024px) {
+			font-size: 1.4rem;
+		}
 		&:not(:disabled):hover {
 			background-color: var(--color-brand-700);
 			color: var(--color-brand-50);
@@ -67,11 +70,13 @@ const styles = {
 
 		& svg {
 			stroke-width: 10rem;
-			margin-bottom: 2px;
+
+			@media (min-width: 1024px) {
+				margin-bottom: 2px;
+			}
 		}
 	`,
 	back: css`
-		display: flex;
 		align-items: center;
 		gap: 0.3rem;
 		color: var(--color-brand-800);
@@ -89,6 +94,17 @@ const Button = styled.button`
 	&:disabled {
 		cursor: not-allowed;
 	}
+
+	display: ${({ $booking }) => ($booking ? "none" : "flex")};
+
+	${({ $booking }) =>
+		$booking
+			? css`
+					@media (min-width: 600px) {
+						display: flex;
+					}
+			  `
+			: ""}
 
 	${({ size }) =>
 		size === "fit" &&

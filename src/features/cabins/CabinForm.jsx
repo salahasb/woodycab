@@ -6,9 +6,7 @@ import Form from "../../ui/Form.styled";
 import Button from "../../ui/Button.styled";
 import useCreateCabin from "./useCreateCabin";
 import useEditCabin from "./useEditCabin";
-import { MiniSpinner } from "../../ui/LoadingSpinners";
 import { useToaster } from "../../contexts/ToasterContext";
-import { useEffect } from "react";
 import FileInput from "../../ui/FileInput";
 
 function CabinForm({ cabin = {}, onCloseModal }) {

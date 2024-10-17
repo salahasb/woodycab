@@ -24,7 +24,7 @@ const NavList = styled.ul`
 	/* width: 100%; */
 `;
 
-const LinkButton = styled(NavLink)`
+const LinkButton = styled(NavLink).attrs({ onClick: () => console.log(25) })`
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -53,10 +53,10 @@ const LinkButton = styled(NavLink)`
 	}
 `;
 
-function MainNav() {
+function MainNav({ setShowMenu }) {
 	return (
 		<StyledMainNav>
-			<NavList>
+			<NavList onClick={() => setShowMenu(false)}>
 				<li>
 					<LinkButton to="dashboard">
 						<HiOutlineHome />
@@ -78,7 +78,6 @@ function MainNav() {
 				<li>
 					<LinkButton to="users">
 						<HiOutlineUsers />
-
 						<span>Users</span>
 					</LinkButton>
 				</li>

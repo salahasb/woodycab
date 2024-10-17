@@ -8,12 +8,8 @@ import { MiniSpinner } from "../../ui/LoadingSpinners";
 import { useForm } from "react-hook-form";
 import FileInput from "../../ui/FileInput";
 
-const CurrentHeading = styled(Heading)`
-	margin-bottom: 2rem;
-`;
-
 const StyledUpdateUserData = styled.div`
-	margin-bottom: 4rem;
+	margin-bottom: 2rem;
 `;
 
 function UpdateUserData() {
@@ -63,7 +59,7 @@ function UpdateUserData() {
 
 	return (
 		<StyledUpdateUserData>
-			<CurrentHeading as="h3">Update user data</CurrentHeading>
+			<Heading as="h3">Update user data</Heading>
 			<Form $for="regular" onSubmit={handleSubmit(handleUpdateUser)}>
 				<Form.Row>
 					<Form.Label htmlFor="email">Email address</Form.Label>
@@ -97,6 +93,7 @@ function UpdateUserData() {
 						disabled={isUpdating}
 						$variation="secondary"
 						onClick={handleReset}
+						type="reset"
 					>
 						Cancel
 					</Button>
